@@ -1,0 +1,61 @@
+'use client';
+
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import type { LatLngTuple } from 'leaflet';
+
+// Corrige l'affichage des icônes par défaut de Leaflet avec Next.js (chemins cassés en build)
+const defaultIcon = L.icon({
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+});
+
+L.Marker.prototype.options.icon = defaultIcon;
+
+export interface MapComponentProps {
+    coordinates: LatLngTuple;
+    popupTitle?: string;
+    className?: string;
+}
+
+export function MapComponent({
+    coordinates,
+    popupTitle = 'MSP Oppidum',
+    className = '',
+}: MapComponentProps) {
+    return (
+        <div className={`rounded-xl ${className} h-[360px]`}>
+            <MapContainer
+                center={coordinates}
+                zoom={15}
+                className="h-full w-full"
+                scrollWheelZoom={true}
+                attributionControl={false}
+                style={{ borderRadius: '1rem' }}
+            >
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright noopener noreferrer">OpenStreetMap</a>'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={coordinates}>
+                    <Popup>{popupTitle}</Popup>
+                </Marker>
+            </MapContainer>
+            <p className="text-[10px] text-red-500 text-right mt-1 px-1">
+                <a
+                    href="https://www.openstreetmap.org/copyright"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-foreground"
+                >
+                    © OpenStreetMap
+                </a>
+            </p>
+        </div>
+    );
+}
