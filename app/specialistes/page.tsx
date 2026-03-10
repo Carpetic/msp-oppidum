@@ -47,10 +47,10 @@ export default function SpecialistesPage() {
                                 type="button"
                                 onClick={() => setMetierFiltre(metier)}
                                 className={cn(
-                                    "rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer",
+                                    "rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer active:scale-[0.99]",
                                     metierFiltre === metier
                                         ? "bg-primary text-primary-foreground"
-                                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-md"
                                 )}
                                 aria-pressed={metierFiltre === metier}
                                 aria-label={`Filtrer par ${metier}`}

@@ -37,25 +37,22 @@ export function Footer() {
                     {/* Légal */}
                     <div className="space-y-4">
                         <h3 className="text-lg font-semibold text-foreground">Légal</h3>
-                        <nav className="flex flex-col space-y-2">
+                        <nav
+                            className="flex flex-col space-y-2"
+                            aria-label="Liens pages légales"
+                        >
                             <Link
-                                href="/legal"
-                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                                href="/mentions-legales"
+                                className="text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded"
                             >
                                 Mentions légales
                             </Link>
                             <Link
-                                href="/privacy"
-                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                                href="/politique-de-confidentialite"
+                                className="text-sm text-muted-foreground transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded"
                             >
                                 Politique de confidentialité
                             </Link>
-                            {/* <Link
-                                href="/cookies"
-                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                            >
-                                Politique des cookies
-                            </Link> */}
                         </nav>
                     </div>
 
@@ -69,8 +66,12 @@ export function Footer() {
                     </div> */}
                 </div>
 
-                {/* Copyright */}
-                <div className="mt-8 text-center text-sm text-muted-foreground">
+                {/* Séparateur et copyright */}
+                <div
+                    className="mt-10 border-t border-border pt-8 text-center text-sm text-muted-foreground"
+                    role="contentinfo"
+                    aria-label="Copyright et mentions légales"
+                >
                     <p>
                         © {new Date().getFullYear()} MSP L&apos;OPPIDUM. Tous droits réservés.
                     </p>

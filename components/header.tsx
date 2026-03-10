@@ -3,27 +3,33 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
+import Image from "next/image";
 
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-[--red-500] backdrop-blur supports-backdrop-filter:bg-background/60">
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
             <nav
                 className="container mx-auto flex h-16 items-center justify-between px-4"
                 aria-label="Navigation principale"
             >
-                {/* Logo */}
                 <Link
                     href="/"
-                    className="flex items-center space-x-2 text-xl font-bold text-primary transition-colors hover:text-primary/80"
+                    className="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+                    aria-label="Retour à l'accueil"
                 >
-                    <span>MSP L&apos;OPPIDUM</span>
+                    <Image
+                        src="/logo-oppidum.webp"
+                        alt="MSP L'OPPIDUM"
+                        width={120}
+                        height={48}
+                        className="h-10 w-auto object-contain md:h-12"
+                        priority
+                    />
                 </Link>
 
-                {/* Navigation desktop */}
-                <div className="hidden md:flex items-center space-x-6">
+                <div className="hidden md:flex items-center gap-6 ml-auto">
                     <Link
                         href="/"
                         className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
@@ -38,11 +44,11 @@ export function Header() {
                     </Link>
                 </div>
 
-                {/* Bouton menu mobile */}
+                {/* Bouton menu mobile - à droite */}
                 <button
-                    className="md:hidden p-2 text-foreground"
+                    className="md:hidden p-2 text-foreground rounded-md hover:bg-accent transition-colors ml-auto"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Ouvrir le menu"
+                    aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     aria-expanded={mobileMenuOpen}
                 >
                     {mobileMenuOpen ? (

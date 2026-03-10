@@ -13,7 +13,7 @@ export function LandingInformation() {
                     <div className="bg-card border border-border rounded-xl p-8 shadow-sm mb-12">
                         <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                             Une Maison de Santé Pluriprofessionnelle (MSP) est un lieu unique où plusieurs professionnels de santé
-                            travaillent ensemble pour vous offrir une prise en charge globale et coordonnée.
+                            travaillent ensemble pour vous offrir une prise en charge globale et coordonnée. La MSP L&apos;Oppidum regroupe médecins, infirmiers, kinésithérapeutes et autres professionnels pour des soins primaires de proximité.
                         </p>
 
                         <div className="grid md:grid-cols-3 gap-6 mt-8">

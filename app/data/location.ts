@@ -17,23 +17,23 @@ export interface LocationData {
 
 /**
  * Données de localisation de la MSP Oppidum.
- * Adresse fictive réaliste dans la zone d'Ambérieu-en-Bugey (Ain).
+ * À renseigner avec l'adresse et les coordonnées réelles de la MSP.
  */
 export const locationData: LocationData = {
   name: "MSP Oppidum",
   address: {
-    street: "12 Place de la République",
-    complement: "Bâtiment de la Maison de Santé",
-    postalCode: "01500",
-    city: "Ambérieu-en-Bugey",
+    street: "[À renseigner]",
+    complement: undefined,
+    postalCode: "[À renseigner]",
+    city: "[À renseigner]",
     country: "France",
   },
   coordinates: {
-    lat: 45.9584,
-    lng: 5.3756,
+    lat: 46.603354,
+    lng: 1.888334,
   },
-  phone: "04 74 00 00 00",
-  email: "contact@msp-oppidum.fr",
+  phone: "[À renseigner]",
+  email: "[À renseigner]",
 };
 
 /**
