@@ -46,7 +46,7 @@ export function MapComponent({
                     <Popup>{popupTitle}</Popup>
                 </Marker>
             </MapContainer>
-            <p className="text-[10px] text-red-500 text-right mt-1 px-1">
+            <p className="text-[10px] text-black text-right mt-1 px-1">
                 <a
                     href="https://www.openstreetmap.org/copyright"
                     target="_blank"

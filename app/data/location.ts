@@ -22,17 +22,17 @@ export interface LocationData {
 export const locationData: LocationData = {
   name: "MSP Oppidum",
   address: {
-    street: "[À renseigner]",
+    street: "23 place Jules Ferry",
     complement: undefined,
-    postalCode: "[À renseigner]",
-    city: "[À renseigner]",
+    postalCode: "30290",
+    city: "Laudun",
     country: "France",
   },
   coordinates: {
-    lat: 46.603354,
-    lng: 1.888334,
+    lat: 44.1048849,
+    lng: 4.6560237,
   },
-  phone: "[À renseigner]",
+  phone: "04 66 90 79 54",
   email: "[À renseigner]",
 };
 

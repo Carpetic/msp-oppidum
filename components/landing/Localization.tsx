@@ -26,18 +26,9 @@ export function LandingLocalization() {
     return (
         <Section id="localisation">
             <div className="space-y-8">
-                <div>
-                    <h2 className="text-2xl font-bold text-foreground mb-3">
-                        Notre localisation
-                    </h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                        Notre Maison de Santé Pluriprofessionnelle est située au cœur de
-                        l&apos;Oppidum, un regroupement de plusieurs communes qui se sont
-                        unies pour offrir à leurs habitants un accès facilité aux soins de
-                        santé de proximité. Nous desservons l&apos;ensemble des communes de
-                        l&apos;Oppidum.
-                    </p>
-                </div>
+                <h2 className="text-2xl font-bold text-foreground">
+                    Notre localisation
+                </h2>
 
                 <AddressCard location={locationData} />
 
@@ -60,7 +51,7 @@ export function LandingLocalization() {
                         href={googleMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium h-10 px-6 bg-accent text-accent-foreground hover:bg-accent/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        className="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium h-10 px-6 bg-green-500 text-white hover:bg-green-500/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                         <MapPin className="size-4" aria-hidden />
                         Ouvrir dans Google Maps

@@ -22,13 +22,13 @@ export default function SpecialistesPage() {
     return (
         <main className="min-h-screen bg-background">
             {/* En-tête de page */}
-            <header className="border-b border-border bg-muted/30 py-12 md:py-16">
+            <header className="border-b border-border bg-primary/80 py-12 md:py-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="text-3xl font-bold text-foreground md:text-4xl">
+                        <h1 className="text-3xl font-bold text-white md:text-4xl drop-shadow-sm">
                             Nos Professionnels de Santé
                         </h1>
-                        <p className="mt-4 text-muted-foreground text-lg">
+                        <p className="mt-4 text-white text-lg drop-shadow-sm">
                             L&apos;équipe pluriprofessionnelle de la MSP L&apos;Oppidum vous accompagne
                             au quotidien. Découvrez les professionnels qui composent notre
                             maison de santé.

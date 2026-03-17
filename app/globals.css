@@ -48,8 +48,8 @@
 
 :root {
     /* Couleurs principales - thème médical */
-    --background: #f5f5f5; /* Gris très clair met en rgb */
-    --foreground: #151515; /* Bleu grisé foncé pour le texte */
+    --background: #f9fafb; /* Gris très clair légèrement bleuté */
+    --foreground: #151515; /* Texte sombre lisible */
     
     /* Couleurs de carte */
     --card: #ffffff; /* Blanc pur */
@@ -59,16 +59,12 @@
     --primary: #84a6dd; /* Bleu médical professionnel */
     --primary-foreground: #ffffff;
     
-    /* Couleur secondaire - bleu grisé clair */
-    --secondary: #e5e7eb; /* Bleu grisé très clair */
+    /* Couleur secondaire - gris neutre froid très clair */
+    --secondary: #e5eef7;
     --secondary-foreground: #151515;
     
-    /* Couleur accent - vert médical */
-    --accent: #22c55e; /* Vert médical/soin */
-    --accent-foreground: #ffffff;
-    
-    /* Couleur muted */
-    --muted: #e5e7eb; /* Gris bleuté très clair */
+    /* Couleur muted - gris bleuté très doux pour les sections */
+    --muted: #edf2fb;
     --muted-foreground: #4b5563;
     
     /* Bordures */

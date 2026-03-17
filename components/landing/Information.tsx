@@ -19,21 +19,20 @@ export function LandingInformation() {
                         <div className="grid md:grid-cols-3 gap-6 mt-8">
                             <div className="flex flex-col items-center text-center p-4">
                                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                                    <Users className="w-8 h-8 text-primary" />
-                                </div>
-                                <h3 className="font-semibold text-foreground mb-2">Équipe pluridisciplinaire</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    Médecins, infirmiers, kinésithérapeutes et autres professionnels réunis
-                                </p>
-                            </div>
-
-                            <div className="flex flex-col items-center text-center p-4">
-                                <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                                    <Stethoscope className="w-8 h-8 text-accent" />
+                                    <Stethoscope className="w-8 h-8 text-primary" />
                                 </div>
                                 <h3 className="font-semibold text-foreground mb-2">Soins coordonnés</h3>
                                 <p className="text-sm text-muted-foreground">
                                     Une collaboration étroite pour un suivi personnalisé et efficace
+                                </p>
+                            </div>
+                            <div className="flex flex-col items-center text-center p-4">
+                                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                                    <Users className="w-8 h-8 text-green-500" />
+                                </div>
+                                <h3 className="font-semibold text-foreground mb-2">Équipe pluridisciplinaire</h3>
+                                <p className="text-sm text-muted-foreground">
+                                    Médecins, infirmier(e)s, kinésithérapeute(s), orthophoniste(s), sage-femme, assistant(e) médical(e), secrétaire médical(e), coordinateur(trice) réunis
                                 </p>
                             </div>
 
