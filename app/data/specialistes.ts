@@ -9,7 +9,6 @@ export interface Specialiste {
     doctolib?: string;
     adresse: string;
     horaires?: string;
-    bio?: string;
 }
 
 export const METIERS = [
@@ -27,6 +26,16 @@ export const METIERS = [
 ] as const;
 
 export const specialistes: Specialiste[] = [
+    {
+        id: "0",
+        nom: "Exemple",
+        prenom: "Exemple",
+        metier: "Docteur",
+        telephone: "06 00 00 00 00",
+        adresse: "1 rue de l'exemple Laudun",
+        doctolib: "https://www.doctolib.fr/",
+        photo: "/specialistes/image-docteur.jpg",
+    },
     {
         id: "1",
         nom: "Muller",

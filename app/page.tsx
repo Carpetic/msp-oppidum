@@ -3,6 +3,7 @@ import { LandingInformation } from "@/components/landing/Information";
 import { LandingLocalization } from "@/components/landing/Localization";
 import type { Metadata } from "next";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { LandingFAQ } from "@/components/landing/LandingFAQ";
 
 export const metadata: Metadata = {
     title: "MSP L'Oppidum | Maison de Santé Pluriprofessionnelle",
@@ -28,6 +29,7 @@ export default function Home() {
             <LandingHero />
             <LandingInformation />
             <LandingLocalization />
+            <LandingFAQ />
         </main>
     );
 }

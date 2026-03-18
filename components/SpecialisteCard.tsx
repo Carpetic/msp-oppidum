@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, MapPin, Phone, User } from "lucide-react";
+import { Calendar, ExternalLink, MapPin, Phone, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Specialiste } from "@/app/data/specialistes";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,7 @@ const AVATAR_SIZE = 50;
  * Petit avatar 50x50 ou icône utilisateur (User) à gauche du nom, coordonnées, bouton Doctolib et bio courte.
  */
 export function SpecialisteCard({ specialiste, className }: SpecialisteCardProps) {
-    const { nom, prenom, metier, specialite, photo, telephone, doctolib, adresse, bio } =
+    const { nom, prenom, metier, specialite, photo, telephone, doctolib, adresse } =
         specialiste;
     const hasPhoto = Boolean(photo?.trim());
 
@@ -72,6 +72,10 @@ export function SpecialisteCard({ specialiste, className }: SpecialisteCardProps
                             <span>{telephone}</span>
                         </a>
                     )}
+                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                        <span>{adresse}</span>
+                    </div>
                     {doctolib && (
                         <Link
                             href={doctolib}
@@ -82,25 +86,15 @@ export function SpecialisteCard({ specialiste, className }: SpecialisteCardProps
                             <Button
                                 variant="default"
                                 size="sm"
-                                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                             >
                                 <Calendar className="h-4 w-4" />
-                                Prendre RDV sur Doctolib
+                                Prendre rendez-vous sur Doctolib
+                                <ExternalLink className="h-4 w-4" />
                             </Button>
                         </Link>
                     )}
-                    <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-                        <span>{adresse}</span>
-                    </div>
                 </div>
-
-                {/* Bio courte */}
-                {bio && (
-                    <p className="mt-4 flex-1 text-sm text-muted-foreground leading-relaxed">
-                        {bio}
-                    </p>
-                )}
             </div>
         </article>
     );
