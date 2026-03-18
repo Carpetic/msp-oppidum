@@ -9,11 +9,15 @@ import { SITE_URL, SITE_NAME, SITE_DEFAULT_TITLE, SITE_DEFAULT_DESCRIPTION } fro
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
+    preload: true,
+    display: "swap",
 });
 
 const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
+    preload: true,
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,6 +34,12 @@ export const metadata: Metadata = {
         "soins primaires",
         "soins coordonnés",
         "santé",
+        "Laudun-l'Ardoise",
+        "30290",
+        "Gard",
+        "Connaux",
+        "Bagnols-sur-Cèze",
+        "Roquemaure",
     ],
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
@@ -44,17 +54,18 @@ export const metadata: Metadata = {
         description: SITE_DEFAULT_DESCRIPTION,
         images: [
             {
-                url: "/logo-oppidum.webp",
-                width: 512,
-                height: 512,
-                alt: `Logo ${SITE_NAME}`,
+                url: "/og-image.jpg",
+                width: 1200,
+                height: 630,
+                alt: `MSP L'Oppidum à Laudun-l'Ardoise`,
             },
         ],
     },
     twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: SITE_DEFAULT_TITLE,
         description: SITE_DEFAULT_DESCRIPTION,
+        images: ["/og-image.jpg"],
     },
     robots: {
         index: true,

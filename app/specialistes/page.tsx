@@ -1,27 +1,57 @@
-"use client";
+import type { Metadata } from "next";
 
-import { useMemo, useState } from "react";
-import { specialistes, METIERS, type Specialiste } from "@/app/data/specialistes";
-import { SpecialisteCard } from "@/components/SpecialisteCard";
-import { cn } from "@/lib/utils";
+import { getBreadcrumbListSchema } from "@/lib/structured-data";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SpecialistesClient } from "./SpecialistesClient";
 
-/** Filtre les spécialistes par métier (ou tous si "Tous" est sélectionné). */
-function filterByMetier(list: Specialiste[], metier: string): Specialiste[] {
-    if (metier === "Tous") return list;
-    return list.filter((s) => s.metier === metier);
-}
+export const metadata: Metadata = {
+    title: "Professionnels de santé à Laudun-l'Ardoise",
+    description:
+        "Professionnels de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Prenez rendez-vous.",
+    openGraph: {
+        url: `${SITE_URL}/specialistes`,
+        title: "Professionnels de santé à Laudun-l'Ardoise | MSP L'Oppidum",
+        description:
+            "Professionnels de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Prenez rendez-vous.",
+        siteName: SITE_NAME,
+        locale: "fr_FR",
+        type: "website",
+        images: [
+            {
+                url: "/og-image.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Professionnels de santé MSP L'Oppidum à Laudun-l'Ardoise",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Professionnels de santé à Laudun-l'Ardoise | MSP L'Oppidum",
+        description:
+            "Professionnels de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femmes. Prenez rendez-vous.",
+        images: ["/og-image.jpg"],
+    },
+    alternates: { canonical: `${SITE_URL}/specialistes` },
+    robots: { index: true, follow: true },
+};
 
 export default function SpecialistesPage() {
-    const [metierFiltre, setMetierFiltre] = useState<string>("Tous");
-
-    const specialistesFiltres = useMemo(
-        () => filterByMetier(specialistes, metierFiltre),
-        [metierFiltre]
-    );
+    const breadcrumbSchema = getBreadcrumbListSchema([
+        { name: "Accueil", url: `${SITE_URL}/` },
+        { name: "Professionnels de santé", url: `${SITE_URL}/specialistes` },
+    ]);
 
     return (
         <main className="min-h-screen bg-background">
-            {/* En-tête de page */}
+            <script
+                id="ld-breadcrumb-specialistes"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
+
             <header className="border-b border-border bg-primary/80 py-12 md:py-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
@@ -29,7 +59,7 @@ export default function SpecialistesPage() {
                             Nos Professionnels de Santé
                         </h1>
                         <p className="mt-4 text-white text-lg drop-shadow-sm">
-                            L&apos;équipe pluriprofessionnelle de la MSP L&apos;Oppidum vous accompagne
+                            L&apos;équipe pluriprofessionnelle de la MSP de l&apos;Oppidum vous accompagne
                             au quotidien. Découvrez les professionnels qui composent notre
                             maison de santé.
                         </p>
@@ -37,47 +67,7 @@ export default function SpecialistesPage() {
                 </div>
             </header>
 
-            {/* Filtres par métier */}
-            <div className="border-b border-border bg-card py-6">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-wrap justify-center gap-2">
-                        {METIERS.map((metier) => (
-                            <button
-                                key={metier}
-                                type="button"
-                                onClick={() => setMetierFiltre(metier)}
-                                className={cn(
-                                    "rounded-lg px-4 py-2 text-sm font-medium transition-colors cursor-pointer active:scale-[0.99]",
-                                    metierFiltre === metier
-                                        ? "bg-primary text-primary-foreground"
-                                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-md"
-                                )}
-                                aria-pressed={metierFiltre === metier}
-                                aria-label={`Filtrer par ${metier}`}
-                            >
-                                {metier}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Grille de cartes */}
-            <section className="py-12 md:py-16" aria-label="Liste des professionnels">
-                <div className="container mx-auto px-4">
-                    {specialistesFiltres.length === 0 ? (
-                        <p className="text-center text-muted-foreground">
-                            Aucun professionnel pour ce critère.
-                        </p>
-                    ) : (
-                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                            {specialistesFiltres.map((specialiste) => (
-                                <SpecialisteCard key={specialiste.id} specialiste={specialiste} />
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </section>
+            <SpecialistesClient />
         </main>
     );
 }

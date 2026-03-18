@@ -25,7 +25,7 @@ export const locationData: LocationData = {
     street: "23 place Jules Ferry",
     complement: undefined,
     postalCode: "30290",
-    city: "Laudun",
+    city: "Laudun-l'Ardoise",
     country: "France",
   },
   coordinates: {

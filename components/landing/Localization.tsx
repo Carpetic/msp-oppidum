@@ -27,7 +27,7 @@ export function LandingLocalization() {
         <Section id="localisation">
             <div className="space-y-8">
                 <h2 className="text-2xl font-bold text-foreground">
-                    Notre localisation
+                    Accès à la MSP à {locationData.address.city}
                 </h2>
 
                 <AddressCard location={locationData} />

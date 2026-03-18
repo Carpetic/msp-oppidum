@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { getBreadcrumbListSchema } from "@/lib/structured-data";
 
 /**
  * Données de l'éditeur – à compléter avec les informations officielles de la MSP.
@@ -26,19 +27,56 @@ const HEBERGEUR = {
 } as const;
 
 export const metadata: Metadata = {
-  title: "Mentions légales",
-  description:
-    "Mentions légales du site de la MSP L'Oppidum : éditeur, hébergeur, propriété intellectuelle, responsabilité et droit applicable.",
-  alternates: { canonical: `${SITE_URL}/mentions-legales` },
+    title: "Mentions légales",
+    description:
+        "Mentions légales du site de la MSP L'Oppidum : éditeur, hébergeur, propriété intellectuelle, responsabilité et droit applicable.",
+    alternates: { canonical: `${SITE_URL}/mentions-legales` },
+    openGraph: {
+        url: `${SITE_URL}/mentions-legales`,
+        title: "Mentions légales à Laudun-l'Ardoise | MSP L'Oppidum",
+        description:
+            "Mentions légales de la MSP L'Oppidum à Laudun-l'Ardoise (30290). Éditeur, hébergeur et informations juridiques. Consultez les détails.",
+        siteName: SITE_NAME,
+        locale: "fr_FR",
+        type: "website",
+        images: [
+            {
+                url: "/og-image.jpg",
+                width: 1200,
+                height: 630,
+                alt: "MSP L'Oppidum à Laudun-l'Ardoise",
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Mentions légales à Laudun-l'Ardoise | MSP L'Oppidum",
+        description:
+            "Mentions légales de la MSP L'Oppidum à Laudun-l'Ardoise (30290). Consultez les détails.",
+        images: ["/og-image.jpg"],
+    },
+    robots: { index: true, follow: true },
 };
 
 export default function MentionsLegalesPage() {
+    const breadcrumbSchema = getBreadcrumbListSchema([
+        { name: "Accueil", url: `${SITE_URL}/` },
+        { name: "Mentions légales", url: `${SITE_URL}/mentions-legales` },
+    ]);
+
     return (
         <main
             className="min-h-screen bg-background"
             role="main"
             aria-label="Contenu principal – Mentions légales"
         >
+            <script
+                id="ld-breadcrumb-mentions-legales"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(breadcrumbSchema),
+                }}
+            />
             <article className="container mx-auto max-w-5xl px-4 py-12 md:py-16">
                 <header className="mb-14">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-[2.5rem]">

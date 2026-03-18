@@ -5,14 +5,8 @@ import { useId, useMemo, useRef, useState } from "react";
 
 import { Section } from "../ui/Section";
 import { cn } from "@/lib/utils";
-
-/**
- * Représente une entrée de FAQ.
- */
-export type FAQItem = {
-    question: string;
-    answer: string;
-};
+import { locationData } from "@/app/data/location";
+import { getFaqPageSchema, type FAQItem } from "@/lib/structured-data";
 
 /**
  * Contenu par défaut des questions/réponses.
@@ -21,17 +15,17 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Comment prendre rendez-vous à la MSP de Laudun-l'Ardoise ?",
         answer:
-            "Vous pouvez prendre rendez-vous directement en ligne sur Doctolib, par téléphone au [NUMÉRO], ou en vous présentant à l'accueil de la MSP de l'Oppidum. Nos secrétaires médicales sont disponibles du lundi au vendredi pour vous accompagner.",
+            `Vous pouvez prendre rendez-vous en ligne sur Doctolib, par téléphone au ${locationData.phone}, ou en vous présentant à l'accueil de la MSP de l'Oppidum. Nos secrétaires médicales vous accompagnent du lundi au vendredi à Laudun-l'Ardoise (30290).`,
     },
     {
         question: "La MSP de l'Oppidum accepte-t-elle de nouveaux patients ?",
         answer:
-            "Oui, la MSP de l'Oppidum accueille de nouveaux patients. Vous pouvez vous inscrire directement auprès du praticien de votre choix. Aucune démarche préalable n'est nécessaire pour une première consultation.",
+            "Oui. La MSP de l'Oppidum accueille de nouveaux patients. Vous pouvez vous inscrire directement auprès du professionnel de santé de votre choix (médecin généraliste, kinésithérapeute, orthophoniste, sage-femme, soins infirmiers, etc.).",
     },
     {
         question: "Quels sont les horaires d'ouverture de la maison de santé ?",
         answer:
-            "La MSP de l'Oppidum est ouverte du lundi au vendredi de [HEURE] à [HEURE], et le samedi matin de [HEURE] à [HEURE]. Des créneaux pour les soins non programmés (urgences du quotidien) sont disponibles chaque jour sans rendez-vous.",
+            "La MSP de l'Oppidum est ouverte du lundi au vendredi et propose des créneaux selon les besoins. Pour connaître la disponibilité du moment et réserver le bon créneau, prenez rendez-vous à Laudun-l'Ardoise (30290) par téléphone ou sur Doctolib.",
     },
     {
         question: "Puis-je déclarer mon médecin traitant à la MSP de Laudun-l'Ardoise ?",
@@ -41,29 +35,9 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Quelles communes sont desservies par la MSP de l'Oppidum ?",
         answer:
-            "La MSP de l'Oppidum accueille les patients de Laudun-l'Ardoise et des communes environnantes : Connaux, Bagnols-sur-Cèze, Roquemaure, Saint-Gervais, Chusclan et les villages du nord du Gard. Aucune condition de résidence n'est requise pour consulter.",
+            "La MSP de l'Oppidum accueille les patients de Laudun-l'Ardoise et des communes environnantes : Connaux, Bagnols-sur-Cèze, Roquemaure, Chusclan, Saint-Gervais, ou à d&apos;autres communes. Aucune condition de résidence n'est requise pour consulter.",
     },
 ];
-
-const FAQ_LD_CONTEXT = "https://schema.org";
-
-/**
- * Construit le schéma JSON-LD `FAQPage` pour la page de FAQ.
- */
-function buildFaqJsonLd(items: FAQItem[]) {
-    return {
-        "@context": FAQ_LD_CONTEXT,
-        "@type": "FAQPage",
-        mainEntity: items.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: item.answer,
-            },
-        })),
-    };
-}
 
 /**
  * Section FAQ avec accordéon exclusif (une seule question ouverte à la fois).
@@ -74,7 +48,7 @@ export function LandingFAQ({ items = FAQ_ITEMS }: { items?: FAQItem[] }) {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const ignoreNextClickRef = useRef(false);
 
-    const faqJsonLd = useMemo(() => buildFaqJsonLd(items), [items]);
+    const faqJsonLd = useMemo(() => getFaqPageSchema(items), [items]);
 
     return (
         <>
@@ -166,6 +140,7 @@ export function LandingFAQ({ items = FAQ_ITEMS }: { items?: FAQItem[] }) {
             </Section>
 
             <script
+                id="ld-faqpage"
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(faqJsonLd),

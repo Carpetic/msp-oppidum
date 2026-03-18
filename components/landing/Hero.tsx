@@ -1,18 +1,26 @@
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { locationData } from "@/app/data/location";
 
 export function LandingHero() {
     return (
         <section
             className="relative overflow-hidden border-b border-border min-h-128 md:min-h-144 flex items-center"
-            style={{
-                backgroundImage: "url(/background/oppidum.webp)",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}
             aria-labelledby="hero-title"
         >
+            <div className="absolute inset-0">
+                <Image
+                    src="/background/oppidum.webp"
+                    alt="Photo de l'Oppidum à Laudun-l'Ardoise"
+                    width={1600}
+                    height={900}
+                    priority
+                    className="h-full w-full object-cover"
+                    sizes="100vw"
+                />
+            </div>
             {/* Overlay sobre : bleu médical léger pour lisibilité et cohérence */}
             <div
                 className="absolute inset-0 bg-linear-to-b from-primary/85 via-primary/80 to-primary/90"
@@ -24,8 +32,11 @@ export function LandingHero() {
                     <p className="text-white text-sm font-medium tracking-wide uppercase mb-4 drop-shadow-sm">
                         Maison de Santé Pluriprofessionnelle
                     </p>
-                    <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight mb-4 drop-shadow-md">
-                        MSP L&apos;Oppidum
+                    <h1
+                        id="hero-title"
+                        className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight mb-4 drop-shadow-md"
+                    >
+                        Maison de Santé Pluriprofessionnelle de {locationData.address.city}
                     </h1>
                     <p className="text-white/95 text-lg md:text-xl mb-10 max-w-xl mx-auto drop-shadow-sm">
                         Soins coordonnés et prise en charge globale au cœur de votre territoire. Médecine générale et équipe pluriprofessionnelle à votre service.

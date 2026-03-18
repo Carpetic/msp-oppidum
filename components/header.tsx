@@ -9,7 +9,7 @@ export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-white backdrop-blur supports-backdrop-filter:bg-white">
+        <header className="sticky top-0 z-1000 w-full border-b border-border bg-white backdrop-blur supports-backdrop-filter:bg-white">
             <nav
                 className="container mx-auto flex h-16 items-center justify-between px-4"
                 aria-label="Navigation principale"
