@@ -75,7 +75,7 @@ export function LandingHero() {
                             className="border-2 border-white text-white rounded-lg bg-transparent transition-all duration-200 ease-out hover:bg-white/20 hover:border-white/90 active:scale-[0.99] active:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                         >
                             <Link href="#faq" onClick={handleFaqClick}>
-                                En savoir plus
+                                Une question ?
                             </Link>
                         </Button>
                     </div>
