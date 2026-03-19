@@ -13,9 +13,9 @@ import { getFaqPageSchema, type FAQItem } from "@/lib/structured-data";
  */
 export const FAQ_ITEMS: FAQItem[] = [
     {
-        question: "Comment prendre rendez-vous à la MSP de Laudun-l'Ardoise ?",
+        question: "Comment prendre rendez-vous à la MSP de Laudun ?",
         answer:
-            `Vous pouvez prendre rendez-vous en ligne sur Doctolib, par téléphone au ${locationData.phone}, ou en vous présentant à l'accueil de la MSP de l'Oppidum. Nos secrétaires médicales vous accompagnent du lundi au vendredi à Laudun-l'Ardoise (30290).`,
+            `Vous pouvez prendre rendez-vous en ligne sur Doctolib, par téléphone au ${locationData.phone}, ou en vous présentant à l'accueil de la MSP de l'Oppidum. Nos secrétaires médicales vous accompagnent du lundi au vendredi à Laudun (30290).`,
     },
     {
         question: "La MSP de l'Oppidum accepte-t-elle de nouveaux patients ?",
@@ -25,17 +25,17 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Quels sont les horaires d'ouverture de la maison de santé ?",
         answer:
-            "La MSP de l'Oppidum est ouverte du lundi au vendredi et propose des créneaux selon les besoins. Pour connaître la disponibilité du moment et réserver le bon créneau, prenez rendez-vous à Laudun-l'Ardoise (30290) par téléphone ou sur Doctolib.",
+            "La MSP de l'Oppidum est ouverte du lundi au vendredi et propose des créneaux selon les besoins. Pour connaître la disponibilité du moment et réserver le bon créneau, prenez rendez-vous à Laudun (30290) par téléphone ou sur Doctolib.",
     },
     {
-        question: "Puis-je déclarer mon médecin traitant à la MSP de Laudun-l'Ardoise ?",
+        question: "Puis-je déclarer mon médecin traitant à la MSP de l'Oppidum ?",
         answer:
             "Oui, vous pouvez choisir l'un de nos médecins généralistes comme médecin traitant et le déclarer auprès de l'Assurance Maladie via amelipro.fr ou directement en cabinet. Ce choix vous garantit un meilleur remboursement de vos consultations.",
     },
     {
         question: "Quelles communes sont desservies par la MSP de l'Oppidum ?",
         answer:
-            "La MSP de l'Oppidum accueille les patients de Laudun-l'Ardoise et des communes environnantes : Connaux, Bagnols-sur-Cèze, Roquemaure, Chusclan, Saint-Gervais, ou à d&apos;autres communes. Aucune condition de résidence n'est requise pour consulter.",
+            "La MSP de l'Oppidum accueille les patients de Laudun et des communes environnantes : Connaux, Bagnols-sur-Cèze, Roquemaure, Chusclan, Saint-Gervais, ou à d&apos;autres communes. Aucune condition de résidence n'est requise pour consulter.",
     },
 ];
 

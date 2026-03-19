@@ -12,7 +12,7 @@ export type FAQItem = {
 };
 
 export const AREA_SERVED = [
-    "Laudun-l'Ardoise",
+    "Laudun",
     "Connaux",
     "Bagnols-sur-Cèze",
     "Roquemaure",
@@ -62,7 +62,7 @@ export function getMedicalClinicSchema() {
         "@id": `${SITE_URL}/#medicalclinic`,
         name: SITE_NAME,
         description:
-            "Maison de Santé Pluriprofessionnelle : médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Soins coordonnés au service de Laudun-l'Ardoise et des communes voisines.",
+            "Maison de Santé Pluriprofessionnelle : médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Soins coordonnés au service de Laudun et des communes voisines.",
         url: SITE_URL,
         telephone: locationData.phone ?? undefined,
         address: {

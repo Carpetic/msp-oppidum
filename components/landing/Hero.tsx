@@ -1,10 +1,25 @@
+"use client";
+
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import type { MouseEvent } from "react";
 import { locationData } from "@/app/data/location";
 
 export function LandingHero() {
+    const handleFaqClick = (event: MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+
+        const faqSection = document.getElementById("faq");
+        if (!faqSection) return;
+
+        faqSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+    };
+
     return (
         <section
             className="relative overflow-hidden border-b border-border min-h-128 md:min-h-144 flex items-center"
@@ -13,7 +28,7 @@ export function LandingHero() {
             <div className="absolute inset-0">
                 <Image
                     src="/background/oppidum.webp"
-                    alt="Photo de l'Oppidum à Laudun-l'Ardoise"
+                    alt="Photo de l'Oppidum à Laudun"
                     width={1600}
                     height={900}
                     priority
@@ -59,7 +74,7 @@ export function LandingHero() {
                             size="lg"
                             className="border-2 border-white text-white rounded-lg bg-transparent transition-all duration-200 ease-out hover:bg-white/20 hover:border-white/90 active:scale-[0.99] active:bg-white/10 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
                         >
-                            <Link href="#presentation">
+                            <Link href="#faq" onClick={handleFaqClick}>
                                 En savoir plus
                             </Link>
                         </Button>

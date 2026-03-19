@@ -9,7 +9,7 @@ import { getBreadcrumbListSchema } from "@/lib/structured-data";
 const RESPONSABLE = {
     nom: "MSP L'Opidum",
     denominationComplete: "MSP L'Opidum (Maison de Santé Pluriprofessionnelle)",
-    adresse: "[Adresse complète du siège – numéro, voie, code postal, ville]",
+    adresse: "23 place Jules Ferry, 30290 Laudun",
     email: "[Email de contact institutionnel]",
 } as const;
 
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     alternates: { canonical: `${SITE_URL}/politique-de-confidentialite` },
     openGraph: {
         url: `${SITE_URL}/politique-de-confidentialite`,
-        title: "Confidentialité à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Confidentialité à Laudun - MSP L'Oppidum",
         description:
-            "Politique de confidentialité et protection des données de la MSP L'Oppidum à Laudun-l'Ardoise (30290). Consultez les détails.",
+            "Politique de confidentialité et protection des données de la MSP L'Oppidum à Laudun (30290). Consultez les détails.",
         siteName: SITE_NAME,
         locale: "fr_FR",
         type: "website",
@@ -31,15 +31,15 @@ export const metadata: Metadata = {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "MSP L'Oppidum à Laudun-l'Ardoise",
+                alt: "MSP L'Oppidum à Laudun",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Confidentialité à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Confidentialité à Laudun - MSP L'Oppidum",
         description:
-            "Politique de confidentialité et protection des données de la MSP L'Oppidum à Laudun-l'Ardoise (30290).",
+            "Politique de confidentialité et protection des données de la MSP L'Oppidum à Laudun (30290).",
         images: ["/og-image.jpg"],
     },
     robots: { index: true, follow: true },
@@ -396,7 +396,7 @@ export default function PolitiqueConfidentialitePage() {
 
                 <footer className="mt-14 border-t border-border pt-8 text-sm text-muted-foreground">
                     <p>
-                        Dernière mise à jour : mars 2025. Cette politique peut être
+                        Dernière mise à jour : mars 2026. Cette politique peut être
                         modifiée pour refléter les évolutions du site ou de la
                         réglementation.
                     </p>

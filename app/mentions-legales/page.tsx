@@ -8,8 +8,8 @@ import { getBreadcrumbListSchema } from "@/lib/structured-data";
 const EDITEUR = {
     nom: "MSP L'Opidum",
     denominationComplete: "MSP L'Opidum (Maison de Santé Pluriprofessionnelle)",
-    formeJuridique: "[À compléter – ex. : SISA, SCM, association]",
-    adresse: "[Adresse complète du siège – numéro, voie, code postal, ville]",
+    formeJuridique: "Association loi 1901",
+    adresse: "23 place Jules Ferry, 30290 Laudun",
     telephone: "[Téléphone de la MSP]",
     email: "[Email de contact institutionnel]",
     siret: "[SIRET à 14 chiffres]",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     alternates: { canonical: `${SITE_URL}/mentions-legales` },
     openGraph: {
         url: `${SITE_URL}/mentions-legales`,
-        title: "Mentions légales à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Mentions légales à Laudun - MSP L'Oppidum",
         description:
-            "Mentions légales de la MSP L'Oppidum à Laudun-l'Ardoise (30290). Éditeur, hébergeur et informations juridiques. Consultez les détails.",
+            "Mentions légales de la MSP L'Oppidum à Laudun (30290). Éditeur, hébergeur et informations juridiques. Consultez les détails.",
         siteName: SITE_NAME,
         locale: "fr_FR",
         type: "website",
@@ -44,15 +44,15 @@ export const metadata: Metadata = {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "MSP L'Oppidum à Laudun-l'Ardoise",
+                alt: "MSP L'Oppidum à Laudun",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Mentions légales à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Mentions légales à Laudun - MSP L'Oppidum",
         description:
-            "Mentions légales de la MSP L'Oppidum à Laudun-l'Ardoise (30290). Consultez les détails.",
+            "Mentions légales de la MSP L'Oppidum à Laudun (30290). Consultez les détails.",
         images: ["/og-image.jpg"],
     },
     robots: { index: true, follow: true },
@@ -359,7 +359,7 @@ export default function MentionsLegalesPage() {
 
                 <footer className="mt-14 border-t border-border pt-8 text-sm text-muted-foreground">
                     <p>
-                        Dernière mise à jour : mars 2025. Document à caractère informatif,
+                        Dernière mise à jour : mars 2026. Document à caractère informatif,
                         susceptible d&apos;évoluer.
                     </p>
                 </footer>

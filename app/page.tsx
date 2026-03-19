@@ -8,32 +8,14 @@ import { LandingEquipe } from "@/components/landing/Equipe";
 import { getBreadcrumbListSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-    title: "Maison de santé à Laudun-l'Ardoise",
+    title: "Maison de santé à Laudun",
     description:
-        "Maison de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun-l'Ardoise.",
-    keywords: [
-        SITE_NAME,
-        "Maison de santé",
-        "MSP",
-        "médecine générale",
-        "kinésithérapie",
-        "orthophonie",
-        "soins infirmiers",
-        "sage-femme",
-        "Laudun-l'Ardoise",
-        "30290",
-        "Gard",
-        "Connaux",
-        "Bagnols-sur-Cèze",
-        "Roquemaure",
-        "Chusclan",
-        "Saint-Gervais",
-    ],
+        "Maison de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun.",
     openGraph: {
         url: SITE_URL,
-        title: "Maison de santé à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Maison de santé à Laudun - MSP L'Oppidum",
         description:
-            "Maison de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun-l'Ardoise.",
+            "Maison de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun.",
         siteName: SITE_NAME,
         locale: "fr_FR",
         type: "website",
@@ -42,15 +24,15 @@ export const metadata: Metadata = {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "MSP L'Oppidum à Laudun-l'Ardoise",
+                alt: "MSP L'Oppidum à Laudun",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Maison de santé à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Maison de santé à Laudun - MSP L'Oppidum",
         description:
-            "Maison de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun-l'Ardoise.",
+            "Maison de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun.",
         images: ["/og-image.jpg"],
     },
     alternates: { canonical: `${SITE_URL}/` },

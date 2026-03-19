@@ -5,14 +5,14 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { SpecialistesClient } from "./SpecialistesClient";
 
 export const metadata: Metadata = {
-    title: "Professionnels de santé à Laudun-l'Ardoise",
+    title: "Professionnels de santé à Laudun - MSP L'Oppidum",
     description:
-        "Professionnels de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Prenez rendez-vous.",
+        "Professionnels de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie, infirmières et sage-femme. Prenez rendez-vous.",
     openGraph: {
         url: `${SITE_URL}/specialistes`,
-        title: "Professionnels de santé à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Professionnels de santé à Laudun - MSP L'Oppidum",
         description:
-            "Professionnels de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Prenez rendez-vous.",
+            "Professionnels de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie, infirmières et sage-femme. Prenez rendez-vous.",
         siteName: SITE_NAME,
         locale: "fr_FR",
         type: "website",
@@ -21,15 +21,15 @@ export const metadata: Metadata = {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Professionnels de santé MSP L'Oppidum à Laudun-l'Ardoise",
+                alt: "Professionnels de santé MSP L'Oppidum à Laudun",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Professionnels de santé à Laudun-l'Ardoise | MSP L'Oppidum",
+        title: "Professionnels de santé à Laudun - MSP L'Oppidum",
         description:
-            "Professionnels de santé à Laudun-l'Ardoise (30290). Médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femmes. Prenez rendez-vous.",
+            "Professionnels de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie, infirmières et sage-femmes. Prenez rendez-vous.",
         images: ["/og-image.jpg"],
     },
     alternates: { canonical: `${SITE_URL}/specialistes` },
