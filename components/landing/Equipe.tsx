@@ -1,13 +1,13 @@
 import { Section } from "../ui/Section";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { METIERS, specialistes } from "@/app/data/specialistes";
+import { METIERS, SPECIALISTES, specialistes } from "@/app/data/specialistes";
 
 export function LandingEquipe() {
     const effectifsParMetier = METIERS.filter((metier) => metier !== "Tous")
         .map((metier) => ({
             metier,
-            total: specialistes.filter((specialiste) => specialiste.metier === metier).length,
+            total: SPECIALISTES.filter((specialiste) => specialiste.metier === metier).length,
         }))
         .filter(({ total }) => total > 0);
 
@@ -15,7 +15,7 @@ export function LandingEquipe() {
         <Section id="equipe">
             <div className="space-y-6">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                    Une équipe pluriprofessionnelle à Laudun-l&apos;Ardoise
+                    Une équipe pluriprofessionnelle multisites
                 </h2>
 
                 <p className="text-muted-foreground leading-relaxed">
@@ -26,8 +26,7 @@ export function LandingEquipe() {
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed">
-                    Que vous soyez résidant à <strong>Laudun-l&apos;Ardoise</strong> (30290), à Connaux, à
-                    Bagnols-sur-Cèze, à Roquemaure, à Chusclan, à Saint-Gervais, ou à d&apos;autres communes, vous pouvez trouver un accompagnement adapté à votre situation.
+                    Que vous soyez résidant à <strong>Laudun L&apos;ardoise</strong> (30290), Orsan, Codolet ou Chusclan, vous pouvez trouver un accompagnement adapté à votre situation.
                 </p>
 
                 <div className="rounded-lg border border-border p-4 md:p-6 bg-white shadow-sm">

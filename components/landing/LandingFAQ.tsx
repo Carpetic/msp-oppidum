@@ -5,7 +5,6 @@ import { useId, useMemo, useRef, useState } from "react";
 
 import { Section } from "../ui/Section";
 import { cn } from "@/lib/utils";
-import { locationData } from "@/app/data/location";
 import { getFaqPageSchema, type FAQItem } from "@/lib/structured-data";
 
 /**
@@ -15,7 +14,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Comment prendre rendez-vous à la MSP de Laudun ?",
         answer:
-            `Vous pouvez prendre rendez-vous en ligne sur Doctolib, par téléphone au ${locationData.phone}, ou en vous présentant à l'accueil de la MSP de l'Oppidum. Nos secrétaires médicales vous accompagnent du lundi au vendredi à Laudun (30290).`,
+            `Vous pouvez prendre rendez-vous en ligne sur Doctolib ou par téléphone. N'hésitez pas à consulter la page "Nos professionels" pour trouver le professionnel de santé de votre choix.`,
     },
     {
         question: "La MSP de l'Oppidum accepte-t-elle de nouveaux patients ?",
@@ -35,7 +34,7 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Quelles communes sont desservies par la MSP de l'Oppidum ?",
         answer:
-            "La MSP de l'Oppidum accueille les patients de Laudun et des communes environnantes : Connaux, Bagnols-sur-Cèze, Roquemaure, Chusclan, Saint-Gervais, ou à d&apos;autres communes. Aucune condition de résidence n'est requise pour consulter.",
+            "La MSP de l'Oppidum accueille les patients de Laudun L'ardoise, Orsan, Codolet et Chusclan.",
     },
 ];
 

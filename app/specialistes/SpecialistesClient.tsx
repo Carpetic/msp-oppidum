@@ -1,22 +1,36 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { specialistes, METIERS, type Specialiste } from "@/app/data/specialistes";
-import { SpecialisteCard } from "@/components/SpecialisteCard";
 import { cn } from "@/lib/utils";
+import { getSpecialistesByCabinet } from "@/lib/specialites";
+import { METIERS } from "../data/specialistes";
+import { CabinetCard } from "@/components/CabinetCard";
 
-/** Filtre les spécialistes par métier (ou tous si "Tous" est sélectionné). */
-function filterByMetier(list: Specialiste[], metier: string): Specialiste[] {
-    if (metier === "Tous") return list;
-    return list.filter((s) => s.metier === metier);
+/**
+ * Filtre les groupes cabinet/spécialistes selon le métier sélectionné.
+ * Un cabinet est conservé s'il contient au moins un spécialiste du métier ciblé.
+ */
+function filterCabinetsByMetier(
+    groups: ReturnType<typeof getSpecialistesByCabinet>,
+    metier: string
+) {
+    if (metier === "Tous") return groups;
+    return groups
+        .map((group) => ({
+            ...group,
+            specialistes: group.specialistes.filter((s) => s.metier === metier),
+        }))
+        .filter((group) => group.specialistes.length > 0);
 }
 
 export function SpecialistesClient() {
     const [metierFiltre, setMetierFiltre] = useState<string>("Tous");
 
-    const specialistesFiltres = useMemo(
-        () => filterByMetier(specialistes, metierFiltre),
-        [metierFiltre]
+    const allGroups = useMemo(() => getSpecialistesByCabinet(), []);
+
+    const groupesFiltres = useMemo(
+        () => filterCabinetsByMetier(allGroups, metierFiltre),
+        [allGroups, metierFiltre]
     );
 
     return (
@@ -46,19 +60,20 @@ export function SpecialistesClient() {
                 </div>
             </div>
 
-            {/* Grille de cartes */}
-            <section className="py-12 md:py-16" aria-label="Liste des professionnels">
+            {/* Grille de cartes cabinet */}
+            <section className="py-12 md:py-16" aria-label="Cabinets et professionnels de santé">
                 <div className="container mx-auto px-4">
-                    {specialistesFiltres.length === 0 ? (
+                    {groupesFiltres.length === 0 ? (
                         <p className="text-center text-muted-foreground">
                             Aucun professionnel pour ce critère.
                         </p>
                     ) : (
-                        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                            {specialistesFiltres.map((specialiste) => (
-                                <SpecialisteCard
-                                    key={specialiste.id}
-                                    specialiste={specialiste}
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                            {groupesFiltres.map(({ cabinet, specialistes }) => (
+                                <CabinetCard
+                                    key={cabinet.id}
+                                    cabinet={cabinet}
+                                    specialistes={specialistes}
                                 />
                             ))}
                         </div>
@@ -68,4 +83,3 @@ export function SpecialistesClient() {
         </>
     );
 }
-

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import type { MouseEvent } from "react";
-import { locationData } from "@/app/data/location";
 
 export function LandingHero() {
     const handleFaqClick = (event: MouseEvent<HTMLAnchorElement>) => {
@@ -38,7 +37,7 @@ export function LandingHero() {
             </div>
             {/* Overlay sobre : bleu médical léger pour lisibilité et cohérence */}
             <div
-                className="absolute inset-0 bg-linear-to-b from-primary/85 via-primary/80 to-primary/90"
+                className="absolute inset-0 bg-linear-to-b from-primary/75 via-primary/70 to-primary/80"
                 aria-hidden
             />
 
@@ -51,10 +50,10 @@ export function LandingHero() {
                         id="hero-title"
                         className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight mb-4 drop-shadow-md"
                     >
-                        Maison de Santé Pluriprofessionnelle de {locationData.address.city}
+                        Maison de Santé Pluriprofessionnelle Multisite L&apos;Oppidum
                     </h1>
                     <p className="text-white/95 text-lg md:text-xl mb-10 max-w-xl mx-auto drop-shadow-sm">
-                        Soins coordonnés et prise en charge globale au cœur de votre territoire. Médecine générale et équipe pluriprofessionnelle à votre service.
+                        Soins coordonnés et prise en charge globale à Laudun L&apos;ardoise, Orsan, Codolet et Chusclan. Médecine générale et équipe pluriprofessionnelle à votre service.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">

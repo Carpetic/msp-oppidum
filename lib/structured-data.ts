@@ -12,12 +12,10 @@ export type FAQItem = {
 };
 
 export const AREA_SERVED = [
-    "Laudun",
-    "Connaux",
-    "Bagnols-sur-Cèze",
-    "Roquemaure",
+    "Laudun L'ardoise",
+    "Orsan",
+    "Codolet",
     "Chusclan",
-    "Saint-Gervais",
 ];
 
 export const MEDICAL_SPECIALTIES = [
@@ -62,7 +60,7 @@ export function getMedicalClinicSchema() {
         "@id": `${SITE_URL}/#medicalclinic`,
         name: SITE_NAME,
         description:
-            "Maison de Santé Pluriprofessionnelle : médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Soins coordonnés au service de Laudun et des communes voisines.",
+            "Maison de Santé Pluriprofessionnelle : médecine générale, kinésithérapie, orthophonie, soins infirmiers et sage-femme. Soins coordonnés au service de Laudun L'ardoise, Orsan, Codolet et Chusclan.",
         url: SITE_URL,
         telephone: locationData.phone ?? undefined,
         address: {
