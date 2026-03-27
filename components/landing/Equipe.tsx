@@ -1,7 +1,7 @@
 import { Section } from "../ui/Section";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { METIERS, SPECIALISTES, specialistes } from "@/app/data/specialistes";
+import { METIERS, SPECIALISTES } from "@/app/data/specialistes";
 
 export function LandingEquipe() {
     const effectifsParMetier = METIERS.filter((metier) => metier !== "Tous")
