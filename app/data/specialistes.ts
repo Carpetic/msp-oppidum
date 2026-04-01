@@ -48,37 +48,37 @@ export const CABINETS: Cabinet[] = [
     },
     {
         id: "cabinet-3",
-        nom: "Sage-femme de Laudun",
+        nom: "Sage-femme de Laudun L’Ardoise",
         adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
         telephone: "07 61 58 34 97",
     },
     {
         id: "cabinet-4",
-        nom: "Cabinet infirmier Laudun",
+        nom: "Cabinet infirmier Laudun L’Ardoise",
         adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
         telephone: "06 10 79 61 99",
     },
     {
         id: "cabinet-5",
-        nom: "Cabinet infirmier Laudun",
+        nom: "Cabinet infirmier Laudun L’Ardoise",
         adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
         telephone: "06 42 55 66 38",
     },
     {
         id: "cabinet-6",
-        nom: "Cabinet infirmier Laudun",
+        nom: "Cabinet infirmier Laudun L’Ardoise",
         adresse: "7 place 4 Septembre 1848, 30290 Laudun l'Ardoise",
         telephone: "06 70 83 63 72",
     },
     {
         id: "cabinet-7",
-        nom: "Cabinet infirmier Laudun",
+        nom: "Cabinet infirmier Laudun L’Ardoise",
         adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
         telephone: "06 76 48 12 65",
     },
     {
         id: "cabinet-8",
-        nom: "Cabinet infirmier L'ardoise",
+        nom: "Cabinet infirmier Laudun L’Ardoise",
         adresse: "1941 route Laudun, 30290 Laudun l'Ardoise",
     },
     {
@@ -101,7 +101,7 @@ export const CABINETS: Cabinet[] = [
     },
     {
         id: "cabinet-12",
-        nom: "Cabinet de kinésithérapie de Laudun",
+        nom: "Cabinet de kinésithérapie de Laudun L’Ardoise",
         adresse: "200 rue Émile Zola, 30290 Laudun-l'Ardoise",
         telephone: "04 66 33 00 41",
     },
@@ -137,7 +137,7 @@ export const CABINETS: Cabinet[] = [
     },
     {
         id: "cabinet-18",
-        nom: "Pharmacie de l'ardoise",
+        nom: "Pharmacie de l'Ardoise",
         adresse: "70 route Avignon, 30290 Laudun l'Ardoise",
         telephone: "04 66 50 23 11",
     },
@@ -171,7 +171,7 @@ export const SPECIALISTES: Specialiste[] = [
     {
         id: "3",
         cabinetId: "cabinet-2",
-        nom: "Jardy",
+        nom: "Jardy-Triola",
         prenom: "Céline",
         metier: "Medecin",
         telephone: "",
