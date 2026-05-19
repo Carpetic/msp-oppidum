@@ -109,3 +109,42 @@ export function getBreadcrumbListSchema(items: BreadcrumbItem[]) {
     };
 }
 
+export type ArticleSchemaParams = {
+    title: string;
+    description: string;
+    url: string;
+    imageUrl: string;
+    datePublished: string;
+    dateModified?: string;
+};
+
+export function getArticleSchema(params: ArticleSchemaParams) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: params.title,
+        description: params.description,
+        image: params.imageUrl,
+        datePublished: params.datePublished,
+        dateModified: params.dateModified ?? params.datePublished,
+        author: {
+            "@type": "Organization",
+            name: SITE_NAME,
+            url: SITE_URL,
+        },
+        publisher: {
+            "@type": "Organization",
+            name: SITE_NAME,
+            url: SITE_URL,
+            logo: {
+                "@type": "ImageObject",
+                url: `${SITE_URL}/logo-oppidum.webp`,
+            },
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": params.url,
+        },
+    };
+}
+

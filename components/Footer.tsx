@@ -31,6 +31,12 @@ export function Footer() {
                             >
                                 Nos Professionnels
                             </Link>
+                            <Link
+                                href="/evenements/octobre-rose-2025"
+                                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                            >
+                                Événements
+                            </Link>
                         </nav>
                     </div>
 
