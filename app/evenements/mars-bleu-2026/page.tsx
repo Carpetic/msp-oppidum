@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { PageHeader } from "@/components/PageHeader";
 import { LandingFAQ } from "@/components/landing/LandingFAQ";
 import { getEvenement, getEvenementMetadata, getEvenementUrl } from "@/app/data/evenements";
 import {
@@ -170,27 +171,16 @@ export default function MarsBleu2026Page() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchemas) }}
             />
 
-            <header
-                className="border-b border-blue-900 py-12 md:py-16"
+            <PageHeader
+                kicker={evenement.kicker}
+                title={evenement.title}
+                subtitle={evenement.tagline}
+                className="border-blue-900"
                 style={{
                     background:
                         "linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #1e3a8a 100%)",
                 }}
-            >
-                <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <p className="text-blue-100 text-sm font-medium tracking-wide uppercase mb-3">
-                            {evenement.kicker}
-                        </p>
-                        <h1 className="text-3xl font-bold text-white md:text-4xl drop-shadow-sm">
-                            {evenement.title}
-                        </h1>
-                        <p className="mt-4 text-white/90 text-lg drop-shadow-sm">
-                            {evenement.tagline}
-                        </p>
-                    </div>
-                </div>
-            </header>
+            />
 
             <article className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
                 <Link

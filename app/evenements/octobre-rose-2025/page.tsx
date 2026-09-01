@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 import { LandingFAQ } from "@/components/landing/LandingFAQ";
+import { PageHeader } from "@/components/PageHeader";
 
 import { getBreadcrumbListSchema, getArticleSchema } from "@/lib/structured-data";
 import { getEvenement, getEvenementMetadata, getEvenementUrl } from "@/app/data/evenements";
@@ -62,26 +63,16 @@ export default function OctobreRose2025Page() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
             />
 
-            <header
-                className="border-b border-pink-200 py-12 md:py-16"
+            <PageHeader
+                kicker={evenement.kicker}
+                title={evenement.title}
+                subtitle={evenement.tagline}
+                className="border-pink-200"
                 style={{
-                    background: "linear-gradient(135deg, #ec4899 0%, #db2777 50%, #be185d 100%)",
+                    background:
+                        "linear-gradient(135deg, #ec4899 0%, #db2777 50%, #be185d 100%)",
                 }}
-            >
-                <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <p className="text-pink-100 text-sm font-medium tracking-wide uppercase mb-3">
-                            {evenement.kicker}
-                        </p>
-                        <h1 className="text-3xl font-bold text-white md:text-4xl drop-shadow-sm">
-                            {evenement.title}
-                        </h1>
-                        <p className="mt-4 text-white/90 text-lg drop-shadow-sm">
-                            {evenement.tagline}
-                        </p>
-                    </div>
-                </div>
-            </header>
+            />
 
             <article className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
                 <Link

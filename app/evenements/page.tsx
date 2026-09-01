@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
 
 import { EventCard } from "@/components/EventCard";
+import { PageHeader } from "@/components/PageHeader";
 import { getEvenements, getEvenementUrl } from "@/app/data/evenements";
 import { getBreadcrumbListSchema, getCollectionPageSchema } from "@/lib/structured-data";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const PAGE_TITLE = "Nos événements et actions de prévention";
+const PAGE_TITLE = "Nos événements";
+const PAGE_KICKER = "Prévention et dépistage";
+const PAGE_TAGLINE =
+    "Les actions de prévention menées à Laudun L'Ardoise.";
 const PAGE_DESCRIPTION =
     "Retrouvez les actions de prévention et de dépistage organisées par la MSP L'Oppidum à Laudun L'Ardoise : Mars Bleu, Octobre Rose et nos rendez-vous santé.";
 
 export const metadata: Metadata = {
-    title: `${PAGE_TITLE} à Laudun`,
+    title: "Nos événements et actions de prévention à Laudun",
     description: PAGE_DESCRIPTION,
     openGraph: {
         url: `${SITE_URL}/evenements`,
-        title: `${PAGE_TITLE} - ${SITE_NAME}`,
+        title: `Nos événements et actions de prévention - ${SITE_NAME}`,
         description: PAGE_DESCRIPTION,
         siteName: SITE_NAME,
         locale: "fr_FR",
@@ -30,7 +34,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: `${PAGE_TITLE} - ${SITE_NAME}`,
+        title: `Nos événements et actions de prévention - ${SITE_NAME}`,
         description: PAGE_DESCRIPTION,
         images: ["/og-image.jpg"],
     },
@@ -48,7 +52,7 @@ export default function EvenementsPage() {
 
     const collectionSchema = getCollectionPageSchema({
         url: `${SITE_URL}/evenements`,
-        name: PAGE_TITLE,
+        name: "Nos événements et actions de prévention",
         description: PAGE_DESCRIPTION,
         items: evenements.map((evenement) => ({
             name: evenement.title,
@@ -70,20 +74,11 @@ export default function EvenementsPage() {
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
             />
 
-            <header className="border-b border-border bg-primary/80 py-12 md:py-16">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="text-3xl font-bold text-white md:text-4xl drop-shadow-sm">
-                            {PAGE_TITLE}
-                        </h1>
-                        <p className="mt-4 text-lg text-white/90 drop-shadow-sm">
-                            Tout au long de l&apos;année, la MSP L&apos;Oppidum se mobilise aux
-                            côtés des professionnels de santé du territoire pour informer et
-                            encourager le dépistage.
-                        </p>
-                    </div>
-                </div>
-            </header>
+            <PageHeader
+                kicker={PAGE_KICKER}
+                title={PAGE_TITLE}
+                subtitle={PAGE_TAGLINE}
+            />
 
             <section className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
                 <div className="grid gap-6 md:grid-cols-2">
