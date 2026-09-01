@@ -43,7 +43,7 @@ export function Header() {
                         Nos Professionnels
                     </Link>
                     <Link
-                        href="/evenements/octobre-rose-2025"
+                        href="/evenements"
                         className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
                     >
                         Événements
@@ -83,7 +83,7 @@ export function Header() {
                             Nos Professionnels
                         </Link>
                         <Link
-                            href="/evenements/octobre-rose-2025"
+                            href="/evenements"
                             className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
                             onClick={() => setMobileMenuOpen(false)}
                         >

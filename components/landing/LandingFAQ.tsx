@@ -41,8 +41,20 @@ export const FAQ_ITEMS: FAQItem[] = [
 /**
  * Section FAQ avec accordéon exclusif (une seule question ouverte à la fois).
  * Inclut aussi le schéma JSON-LD Schema.org `FAQPage` pour le SEO.
+ *
+ * Réutilisée telle quelle par les pages événement, avec leur propre titre.
  */
-export function LandingFAQ({ items = FAQ_ITEMS }: { items?: FAQItem[] }) {
+export function LandingFAQ({
+    items = FAQ_ITEMS,
+    title = "Questions fréquentes",
+    sectionId = "faq",
+    schemaId = "ld-faqpage",
+}: {
+    items?: FAQItem[];
+    title?: string;
+    sectionId?: string;
+    schemaId?: string;
+}) {
     const accordionBaseId = useId().replace(/:/g, "-");
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const ignoreNextClickRef = useRef(false);
@@ -51,11 +63,11 @@ export function LandingFAQ({ items = FAQ_ITEMS }: { items?: FAQItem[] }) {
 
     return (
         <>
-            <Section id="faq">
+            <Section id={sectionId}>
                 <div className="space-y-6">
                     <header className="text-center">
                         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-                            Questions fréquentes
+                            {title}
                         </h2>
                     </header>
 
@@ -139,7 +151,7 @@ export function LandingFAQ({ items = FAQ_ITEMS }: { items?: FAQItem[] }) {
             </Section>
 
             <script
-                id="ld-faqpage"
+                id={schemaId}
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(faqJsonLd),

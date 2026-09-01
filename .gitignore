@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sources des evenements (photos pleine resolution, affiches, comptes rendus)
+/*.jpeg
+/*.pdf
+/*.docx

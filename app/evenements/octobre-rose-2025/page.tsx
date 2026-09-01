@@ -3,43 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-import { getBreadcrumbListSchema, getFaqPageSchema, getArticleSchema } from "@/lib/structured-data";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { LandingFAQ } from "@/components/landing/LandingFAQ";
 
-const EVENT_DATE = "2025-10-17";
-const EVENT_TITLE = "Octobre Rose 2025 - Journée de sensibilisation au dépistage";
-const EVENT_DESCRIPTION =
-    "Le 17 octobre 2025, la MSP L'Oppidum a organisé une journée Octobre Rose avec un atelier d'auto-palpation animé par notre sage-femme Malaury et les professionnels de santé du territoire.";
+import { getBreadcrumbListSchema, getArticleSchema } from "@/lib/structured-data";
+import { getEvenement, getEvenementMetadata, getEvenementUrl } from "@/app/data/evenements";
+import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-    title: EVENT_TITLE,
-    description: EVENT_DESCRIPTION,
-    openGraph: {
-        url: `${SITE_URL}/evenements/octobre-rose-2025`,
-        title: `${EVENT_TITLE} - ${SITE_NAME}`,
-        description: EVENT_DESCRIPTION,
-        siteName: SITE_NAME,
-        locale: "fr_FR",
-        type: "article",
-        publishedTime: EVENT_DATE,
-        images: [
-            {
-                url: "/evenement/octobre-rose.webp",
-                width: 1200,
-                height: 630,
-                alt: "Octobre Rose 2025 - MSP L'Oppidum",
-            },
-        ],
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: `${EVENT_TITLE} - ${SITE_NAME}`,
-        description: EVENT_DESCRIPTION,
-        images: ["/evenement/octobre-rose.webp"],
-    },
-    alternates: { canonical: `${SITE_URL}/evenements/octobre-rose-2025` },
-    robots: { index: true, follow: true },
-};
+const evenement = getEvenement("octobre-rose-2025")!;
+const EVENT_URL = getEvenementUrl(evenement);
+const COVER_URL = `${SITE_URL}${evenement.cover}`;
+
+export const metadata: Metadata = getEvenementMetadata(evenement);
 
 const faqItems = [
     {
@@ -63,18 +37,17 @@ const faqItems = [
 export default function OctobreRose2025Page() {
     const breadcrumbSchema = getBreadcrumbListSchema([
         { name: "Accueil", url: `${SITE_URL}/` },
-        { name: "Événements", url: `${SITE_URL}/evenements/octobre-rose-2025` },
-        { name: "Octobre Rose 2025", url: `${SITE_URL}/evenements/octobre-rose-2025` },
+        { name: "Événements", url: `${SITE_URL}/evenements` },
+        { name: evenement.title, url: EVENT_URL },
     ]);
 
     const articleSchema = getArticleSchema({
-        title: EVENT_TITLE,
-        description: EVENT_DESCRIPTION,
-        url: `${SITE_URL}/evenements/octobre-rose-2025`,
-        imageUrl: `${SITE_URL}/evenement/octobre-rose.webp`,
-        datePublished: EVENT_DATE,
+        title: evenement.seoTitle,
+        description: evenement.description,
+        url: EVENT_URL,
+        imageUrl: COVER_URL,
+        datePublished: evenement.publishedAt,
     });
-    const faqSchema = getFaqPageSchema(faqItems);
 
     return (
         <main className="min-h-screen bg-linear-to-b from-background to-muted" role="main">
@@ -88,11 +61,6 @@ export default function OctobreRose2025Page() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
             />
-            <script
-                id="ld-faq-octobre-rose"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-            />
 
             <header
                 className="border-b border-pink-200 py-12 md:py-16"
@@ -103,13 +71,13 @@ export default function OctobreRose2025Page() {
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
                         <p className="text-pink-100 text-sm font-medium tracking-wide uppercase mb-3">
-                            Événement du 17 octobre 2025
+                            {evenement.kicker}
                         </p>
                         <h1 className="text-3xl font-bold text-white md:text-4xl drop-shadow-sm">
-                            Octobre Rose 2025
+                            {evenement.title}
                         </h1>
                         <p className="mt-4 text-white/90 text-lg drop-shadow-sm">
-                            Journée de sensibilisation au dépistage du cancer du sein
+                            {evenement.tagline}
                         </p>
                     </div>
                 </div>
@@ -117,18 +85,18 @@ export default function OctobreRose2025Page() {
 
             <article className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
                 <Link
-                    href="/"
+                    href="/evenements"
                     className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
                 >
                     <ArrowLeft className="w-4 h-4" />
-                    Retour à l&apos;accueil
+                    Tous nos événements
                 </Link>
 
-                <div className="prose prose-lg max-w-none">
+                <div>
                     <figure className="relative aspect-video w-full overflow-hidden rounded-xl mb-8 shadow-lg">
                         <Image
-                            src="/evenement/octobre-rose.webp"
-                            alt="Journée Octobre Rose 2025 à la MSP L'Oppidum - Atelier d'auto-palpation"
+                            src={evenement.cover}
+                            alt={evenement.coverAlt}
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, 896px"
@@ -191,44 +159,12 @@ export default function OctobreRose2025Page() {
                 </div>
             </article>
 
-            <section className="py-12 md:py-16">
-                <div className="container mx-auto max-w-4xl px-4">
-                    <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
-                        Comprendre Octobre Rose
-                    </h2>
-
-                    <div className="space-y-4">
-                        {faqItems.map((item, index) => (
-                            <details
-                                key={index}
-                                className="group bg-white rounded-lg border border-border shadow-sm"
-                            >
-                                <summary className="flex cursor-pointer items-center justify-between p-5 font-medium text-foreground hover:bg-muted/30 transition-colors rounded-lg">
-                                    <span>{item.question}</span>
-                                    <span className="ml-4 shrink-0 text-muted-foreground group-open:rotate-180 transition-transform">
-                                        <svg
-                                            className="h-5 w-5"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M19 9l-7 7-7-7"
-                                            />
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p className="px-5 pb-5 text-muted-foreground leading-relaxed">
-                                    {item.answer}
-                                </p>
-                            </details>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <LandingFAQ
+                items={faqItems}
+                title="Comprendre Octobre Rose"
+                sectionId="faq-octobre-rose"
+                schemaId="ld-faq-octobre-rose"
+            />
         </main>
     );
 }

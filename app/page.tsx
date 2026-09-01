@@ -5,6 +5,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { LandingLocalization } from "@/components/landing/Localization";
 import dynamic from "next/dynamic";
 import { LandingEquipe } from "@/components/landing/Equipe";
+import { LandingEvenements } from "@/components/landing/Evenements";
 import { getBreadcrumbListSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
@@ -66,6 +67,7 @@ export default function Home() {
             <LandingHero />
             <LandingInformation />
             <LandingEquipe />
+            <LandingEvenements />
             <LandingLocalization />
             <LandingFAQ />
         </main>
