@@ -192,6 +192,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Bilate",
         prenom: "Luc",
         metier: "Medecin",
+        photo: "/professionnels/luc-bilate.webp",
         adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
     },
     {
@@ -208,6 +209,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Carteron",
         prenom: "Helene",
         metier: "Pharmacien(ne)",
+        photo: "/professionnels/helene-carteron.webp",
         adresse: "70 route d'Avignon, 30290 Laudun-l'Ardoise",
     },
     {
@@ -272,6 +274,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Arnal",
         prenom: "Claudine",
         metier: "Infirmier(ère) libérale",
+        photo: "/professionnels/claudine-arnal.webp",
         telephone: "06 09 20 41 27",
         adresse: "1941 route de Laudun, 30290 Laudun-l'Ardoise",
     },
@@ -281,6 +284,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Nini",
         prenom: "Anabela",
         metier: "Infirmier(ère) libérale",
+        photo: "/professionnels/anabela-nini.webp",
         telephone: "06 50 57 17 00",
         adresse: "1941 route de Laudun, 30290 Laudun-l'Ardoise",
     },
@@ -314,6 +318,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Borel",
         prenom: "Sandrine",
         metier: "Infirmier(ère) libérale",
+        photo: "/professionnels/sandrine-borel.webp",
         adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
@@ -322,6 +327,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Courrèges",
         prenom: "Maud",
         metier: "Infirmier(ère) libérale",
+        photo: "/professionnels/maud-courreges.webp",
         adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
@@ -338,6 +344,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Marchand",
         prenom: "Marie-Hélène",
         metier: "Infirmier(ère) libérale",
+        photo: "/professionnels/marie-helene-marchand.webp",
         adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
@@ -410,6 +417,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Boumaza",
         prenom: "Chrystel",
         metier: "Orthophoniste",
+        photo: "/professionnels/chrystel-favier.webp",
         adresse: "890 chemin de Rossignac, 30290 Laudun-l'Ardoise",
     },
     {
@@ -450,6 +458,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Rapitéau",
         prenom: "Barbara",
         metier: "Assistant(e) médical(e)",
+        photo: "/professionnels/barbara-rapiteau.webp",
         adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
     },
 ];
