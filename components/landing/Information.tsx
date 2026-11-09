@@ -1,4 +1,5 @@
 import { Clock, Stethoscope, Users } from "lucide-react";
+import Link from "next/link";
 import { Section } from "../ui/Section";
 
 export function LandingInformation() {
@@ -7,15 +8,38 @@ export function LandingInformation() {
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 text-center">
-                        Qu&apos;est-ce qu&apos;une MSP ?
+                        Qu&apos;est-ce qu&apos;une <span className="whitespace-nowrap">MSP&nbsp;?</span>
                     </h2>
 
                     <div className="bg-card border border-border rounded-xl p-8 shadow-sm mb-12">
-                        <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                            Les maisons de santé pluriprofessionnelles (MSP) sont des structures pluridisciplinaires où travaillent de
-                            manière coordonnée médecins et auxiliaires médicaux. L&apos;idée est de créer un espace dédié à la coordination
-                            des soins au plus près de la population des communes environnantes grâce au partage de compétences. La MSP de l&apos;Oppidum s&apos;inscrit dans
-                            cette démarche pour une prise en charge globale et coordonnée.
+                        {/* Réponse directe en tête de section, avant tout
+                            développement : c'est le passage qu'un moteur ou un
+                            assistant extrait pour répondre à la question du titre. */}
+                        <p className="text-lg text-foreground leading-relaxed mb-5 font-medium">
+                            Une maison de santé pluriprofessionnelle (MSP) réunit dans une même
+                            organisation des médecins et des professionnels paramédicaux qui
+                            travaillent de façon coordonnée. L&apos;objectif : un suivi partagé
+                            entre professionnels, sans que le patient ait à refaire son histoire à
+                            chaque rendez-vous.
+                        </p>
+
+                        <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                            Concrètement, cela veut dire un espace de coordination des soins au plus
+                            près de la population des communes environnantes, fondé sur le partage
+                            de compétences entre professionnels. La MSP de l&apos;Oppidum s&apos;inscrit
+                            dans cette démarche pour une prise en charge globale et coordonnée.
+                        </p>
+
+                        <p className="text-muted-foreground leading-relaxed mb-6">
+                            Pour en savoir plus sur le médecin traitant, le parcours de soin
+                            coordonné et les soins non programmés, découvrez{" "}
+                            <Link
+                                href="/parcours-de-soin"
+                                className="text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:text-primary/80"
+                            >
+                                comment se déroule un parcours de soin à la MSP
+                            </Link>
+                            .
                         </p>
 
                         <div className="grid md:grid-cols-3 gap-6 mt-8">

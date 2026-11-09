@@ -11,25 +11,33 @@ export function Header() {
     return (
         <header className="sticky top-0 z-1000 w-full border-b border-border bg-white backdrop-blur supports-backdrop-filter:bg-white">
             <nav
-                className="container mx-auto flex h-16 items-center justify-between px-4"
+                className="container mx-auto flex h-20 items-center justify-between px-4"
                 aria-label="Navigation principale"
             >
                 <Link
                     href="/"
-                    className="flex items-center shrink-0 transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+                    className="flex shrink-0 items-center gap-2 rounded transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     aria-label="Retour à l'accueil"
                 >
                     <Image
                         src="/logo-oppidum.webp"
-                        alt="MSP L'OPPIDUM"
-                        width={120}
-                        height={48}
-                        className="h-10 w-auto object-contain md:h-12"
+                        alt=""
+                        width={400}
+                        height={400}
+                        className="h-14 w-14 shrink-0 object-contain md:h-16 md:w-16"
                         priority
                     />
+                    <span className="leading-tight">
+                        <span className="block text-sm font-semibold text-foreground sm:text-base">
+                            MSP L&apos;Oppidum
+                        </span>
+                        <span className="hidden text-xs text-muted-foreground xl:block">
+                            Maison de santé pluriprofessionnelle
+                        </span>
+                    </span>
                 </Link>
 
-                <div className="hidden md:flex items-center gap-6 ml-auto">
+                <div className="ml-auto hidden items-center gap-6 md:flex">
                     <Link
                         href="/"
                         className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
@@ -48,11 +56,17 @@ export function Header() {
                     >
                         Événements
                     </Link>
+                    <Link
+                        href="/parcours-de-soin"
+                        className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                    >
+                        Parcours de soin
+                    </Link>
                 </div>
 
                 {/* Bouton menu mobile - à droite */}
                 <button
-                    className="md:hidden p-2 text-foreground rounded-md hover:bg-accent transition-colors ml-auto"
+                    className="ml-auto min-h-11 min-w-11 rounded-md p-2 text-foreground transition-colors hover:bg-accent md:hidden"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     aria-expanded={mobileMenuOpen}
@@ -70,24 +84,31 @@ export function Header() {
                     <div className="container mx-auto flex flex-col space-y-4 px-4 py-4">
                         <Link
                             href="/"
-                            className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                            className="flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Accueil
                         </Link>
                         <Link
                             href="/specialistes"
-                            className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                            className="flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Nos Professionnels
                         </Link>
                         <Link
                             href="/evenements"
-                            className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                            className="flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Événements
+                        </Link>
+                        <Link
+                            href="/parcours-de-soin"
+                            className="flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Parcours de soin
                         </Link>
                     </div>
                 </div>

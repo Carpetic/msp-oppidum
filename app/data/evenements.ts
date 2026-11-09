@@ -15,8 +15,15 @@ export interface Evenement {
     kicker: string;
     /** Accroche affichée sous le <h1>. */
     tagline: string;
-    /** Résumé : meta description + texte des cartes. */
+    /**
+     * Résumé affiché sur les cartes. Pas de limite de longueur.
+     */
     description: string;
+    /**
+     * Meta description, 155 caractères maximum : au-delà, le SERP tronque.
+     * Séparée de `description`, qui n'a pas les mêmes contraintes.
+     */
+    seoDescription: string;
     /** Ouverture de l'événement, ISO 8601. Sert au tri antéchronologique. */
     startDate: string;
     /** Clôture si l'événement s'étale sur plusieurs jours, ISO 8601. */
@@ -43,6 +50,8 @@ export const EVENEMENTS: Evenement[] = [
         tagline: "Une mobilisation encourageante pour le dépistage du cancer colorectal",
         description:
             "En mars et avril 2026, la MSP L'Oppidum s'est mobilisée pour Mars Bleu : des stands dans les pharmacies de Laudun et de L'Ardoise, puis une conférence grand public animée par le Dr Even Philippe, gastro-entérologue.",
+        seoDescription:
+            "Mars Bleu 2026 à Laudun-l'Ardoise : stands de dépistage du cancer colorectal en pharmacie et conférence du Dr Even Philippe, gastro-entérologue.",
         startDate: "2026-03-24",
         endDate: "2026-04-13",
         dateLabel: "24 et 25 mars, 13 avril 2026",
@@ -60,6 +69,8 @@ export const EVENEMENTS: Evenement[] = [
         tagline: "Journée de sensibilisation au dépistage du cancer du sein",
         description:
             "Le 17 octobre 2025, la MSP L'Oppidum a organisé une journée Octobre Rose avec un atelier d'auto-palpation animé par notre sage-femme Malaury et les professionnels de santé du territoire.",
+        seoDescription:
+            "Octobre Rose 2025 à la MSP L'Oppidum : atelier d'auto-palpation animé par notre sage-femme et sensibilisation au dépistage du cancer du sein.",
         startDate: "2025-10-17",
         dateLabel: "17 octobre 2025",
         publishedAt: "2025-10-17",
@@ -85,6 +96,11 @@ export function getEvenementUrl(evenement: Evenement): string {
     return `${SITE_URL}/evenements/${evenement.slug}`;
 }
 
+/** Les autres événements, pour le maillage entre pages. */
+export function getAutresEvenements(slug: string): Evenement[] {
+    return getEvenements().filter((evenement) => evenement.slug !== slug);
+}
+
 /** Métadonnées Next.js communes à toutes les pages d'événement. */
 export function getEvenementMetadata(evenement: Evenement): Metadata {
     const url = getEvenementUrl(evenement);
@@ -92,11 +108,11 @@ export function getEvenementMetadata(evenement: Evenement): Metadata {
 
     return {
         title: evenement.seoTitle,
-        description: evenement.description,
+        description: evenement.seoDescription,
         openGraph: {
             url,
             title,
-            description: evenement.description,
+            description: evenement.seoDescription,
             siteName: SITE_NAME,
             locale: "fr_FR",
             type: "article",
@@ -114,7 +130,7 @@ export function getEvenementMetadata(evenement: Evenement): Metadata {
         twitter: {
             card: "summary_large_image",
             title,
-            description: evenement.description,
+            description: evenement.seoDescription,
             images: [evenement.cover],
         },
         alternates: { canonical: url },

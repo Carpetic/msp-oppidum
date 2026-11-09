@@ -5,8 +5,14 @@ import { ArrowLeft } from "lucide-react";
 
 import { LandingFAQ } from "@/components/landing/LandingFAQ";
 import { PageHeader } from "@/components/PageHeader";
+import { AutresEvenements } from "@/components/AutresEvenements";
+import { JsonLdScript } from "@/components/JsonLd";
 
-import { getBreadcrumbListSchema, getArticleSchema } from "@/lib/structured-data";
+import {
+    getBreadcrumbListSchema,
+    getEventSchema,
+    getMedicalWebPageGraph,
+} from "@/lib/structured-data";
 import { getEvenement, getEvenementMetadata, getEvenementUrl } from "@/app/data/evenements";
 import { SITE_URL } from "@/lib/site";
 
@@ -36,34 +42,44 @@ const faqItems = [
 ];
 
 export default function OctobreRose2025Page() {
-    const breadcrumbSchema = getBreadcrumbListSchema([
+    const breadcrumbItems = [
         { name: "Accueil", url: `${SITE_URL}/` },
         { name: "Événements", url: `${SITE_URL}/evenements` },
         { name: evenement.title, url: EVENT_URL },
-    ]);
+    ];
 
-    const articleSchema = getArticleSchema({
+    const medicalPageGraph = getMedicalWebPageGraph({
         title: evenement.seoTitle,
-        description: evenement.description,
+        description: evenement.seoDescription,
         url: EVENT_URL,
         imageUrl: COVER_URL,
         datePublished: evenement.publishedAt,
+        dateModified: evenement.updatedAt,
+    });
+
+    // M7 : la journée est un événement au même titre que ceux de Mars Bleu, et
+    // doit être balisée comme tel.
+    const eventSchema = getEventSchema({
+        name: "Octobre Rose - journée de sensibilisation au dépistage du cancer du sein",
+        description:
+            "Journée de sensibilisation au dépistage du cancer du sein, avec un atelier d'auto-palpation animé par la sage-femme de la MSP L'Oppidum.",
+        url: EVENT_URL,
+        imageUrl: COVER_URL,
+        startDate: evenement.startDate,
+        performerName: "Malaury Laforest, sage-femme",
     });
 
     return (
-        <main className="min-h-screen bg-linear-to-b from-background to-muted" role="main">
-            <script
+        <main className="min-h-screen bg-linear-to-b from-background to-muted">
+            <JsonLdScript
                 id="ld-breadcrumb-octobre-rose"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+                data={getBreadcrumbListSchema(breadcrumbItems)}
             />
-            <script
-                id="ld-article-octobre-rose"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-            />
+            <JsonLdScript id="ld-page-octobre-rose" data={medicalPageGraph} />
+            <JsonLdScript id="ld-event-octobre-rose" data={eventSchema} />
 
             <PageHeader
+                breadcrumb={breadcrumbItems}
                 kicker={evenement.kicker}
                 title={evenement.title}
                 subtitle={evenement.tagline}
@@ -96,6 +112,14 @@ export default function OctobreRose2025Page() {
                     </figure>
 
                     <section className="space-y-6 text-foreground">
+                        <p className="text-lg leading-relaxed text-foreground">
+                            Le 17 octobre 2025, la MSP L&apos;Oppidum a organisé une journée
+                            Octobre Rose à Laudun-l&apos;Ardoise. Au programme : un atelier
+                            d&apos;auto-palpation animé par Malaury Laforest, sage-femme de la
+                            maison de santé, et un temps d&apos;échange sur le dépistage du
+                            cancer du sein avec les professionnels de santé du territoire.
+                        </p>
+
                         <h2 className="text-2xl font-semibold text-foreground mt-0">
                             Une journée dédiée à la prévention
                         </h2>
@@ -156,6 +180,8 @@ export default function OctobreRose2025Page() {
                 sectionId="faq-octobre-rose"
                 schemaId="ld-faq-octobre-rose"
             />
+
+            <AutresEvenements slug={evenement.slug} />
         </main>
     );
 }

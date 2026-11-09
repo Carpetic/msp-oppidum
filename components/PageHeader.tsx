@@ -1,12 +1,16 @@
 import type { CSSProperties, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import type { BreadcrumbItem } from "@/lib/structured-data";
 
 interface PageHeaderProps {
     /** Sur-titre affiché au-dessus du titre, en petites capitales. */
     kicker?: ReactNode;
     title: ReactNode;
     subtitle?: ReactNode;
+    /** Fil d'Ariane visible : mêmes éléments que le `BreadcrumbList` de la page. */
+    breadcrumb?: BreadcrumbItem[];
     /** Couleurs de fond et de bordure propres à la page. */
     className?: string;
     /** Dégradé inline des pages événement. */
@@ -20,7 +24,14 @@ interface PageHeaderProps {
  * vertical : sans ça, une page sans sur-titre ne fait pas la même hauteur
  * qu'une page qui en a un.
  */
-export function PageHeader({ kicker, title, subtitle, className, style }: PageHeaderProps) {
+export function PageHeader({
+    kicker,
+    title,
+    subtitle,
+    breadcrumb,
+    className,
+    style,
+}: PageHeaderProps) {
     return (
         <header
             className={cn(
@@ -31,6 +42,10 @@ export function PageHeader({ kicker, title, subtitle, className, style }: PageHe
         >
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl mx-auto text-center">
+                    {breadcrumb && (
+                        <Breadcrumb items={breadcrumb} tone="light" className="mb-6" />
+                    )}
+
                     {kicker && (
                         <p className="mb-3 text-sm font-medium uppercase tracking-wide text-white/90 drop-shadow-sm">
                             {kicker}

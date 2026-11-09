@@ -3,6 +3,8 @@
 import { ChevronDown } from "lucide-react";
 import { useId, useMemo, useRef, useState } from "react";
 
+import Link from "next/link";
+
 import { Section } from "../ui/Section";
 import { cn } from "@/lib/utils";
 import { getFaqPageSchema, type FAQItem } from "@/lib/structured-data";
@@ -14,7 +16,8 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Comment prendre rendez-vous à la MSP de Laudun ?",
         answer:
-            `Vous pouvez prendre rendez-vous en ligne sur Doctolib ou par téléphone. N'hésitez pas à consulter la page "Nos professionels" pour trouver le professionnel de santé de votre choix.`,
+            `Vous pouvez prendre rendez-vous en ligne sur Doctolib ou par téléphone. La page « Nos professionnels » liste chaque cabinet de la MSP avec son adresse et son numéro, pour joindre directement le professionnel de santé de votre choix.`,
+        link: { href: "/specialistes", label: "Voir tous nos professionnels" },
     },
     {
         question: "La MSP de l'Oppidum accepte-t-elle de nouveaux patients ?",
@@ -24,17 +27,18 @@ export const FAQ_ITEMS: FAQItem[] = [
     {
         question: "Quels sont les horaires d'ouverture de la maison de santé ?",
         answer:
-            "La MSP de l'Oppidum est ouverte du lundi au vendredi et propose des créneaux selon les besoins. Pour connaître la disponibilité du moment et réserver le bon créneau, prenez rendez-vous à Laudun (30290) par téléphone ou sur Doctolib.",
+            "La MSP de l'Oppidum est ouverte du lundi au vendredi et propose des créneaux selon les besoins. Pour connaître la disponibilité du moment et réserver le bon créneau, prenez rendez-vous à Laudun-l'Ardoise (30290) par téléphone ou sur Doctolib.",
     },
     {
         question: "Puis-je déclarer mon médecin traitant à la MSP de l'Oppidum ?",
         answer:
-            "Oui, vous pouvez choisir l'un de nos médecins généralistes comme médecin traitant et le déclarer auprès de l'Assurance Maladie via amelipro.fr ou directement en cabinet. Ce choix vous garantit un meilleur remboursement de vos consultations.",
+            "Oui, vous pouvez choisir l'un de nos médecins généralistes comme médecin traitant et le déclarer auprès de l'Assurance Maladie via votre compte ameli ou directement en cabinet. Ce choix vous garantit un meilleur remboursement de vos consultations.",
+        link: { href: "/parcours-de-soin", label: "Comment déclarer un médecin traitant" },
     },
     {
         question: "Quelles communes sont desservies par la MSP de l'Oppidum ?",
         answer:
-            "La MSP de l'Oppidum accueille les patients de Laudun L'ardoise, Orsan, Codolet et Chusclan.",
+            "La MSP de l'Oppidum accueille les patients de Laudun-l'Ardoise, Orsan, Codolet et Chusclan.",
     },
 ];
 
@@ -135,10 +139,19 @@ export function LandingFAQ({
                                             )}
                                         >
                                             <div className="overflow-hidden">
-                                                <div className="pb-5">
+                                                <div className="pb-5 space-y-3">
                                                     <p className="text-muted-foreground leading-relaxed">
                                                         {item.answer}
                                                     </p>
+
+                                                    {item.link && (
+                                                        <Link
+                                                            href={item.link.href}
+                                                            className="inline-flex text-sm font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:text-primary/80"
+                                                        >
+                                                            {item.link.label}
+                                                        </Link>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>

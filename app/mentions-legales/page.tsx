@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL, SITE_NAME, SITE_LEGAL_NAME } from "@/lib/site";
 import { getBreadcrumbListSchema } from "@/lib/structured-data";
+import { JsonLdScript } from "@/components/JsonLd";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { locationData } from "@/app/data/location";
 
 /**
  * Données de l'éditeur – à compléter avec les informations officielles de la MSP.
  */
 const EDITEUR = {
-    nom: "MSP L'Opidum",
-    denominationComplete: "MSP L'Opidum (Maison de Santé Pluriprofessionnelle)",
+    nom: SITE_NAME,
+    denominationComplete: SITE_LEGAL_NAME,
     formeJuridique: "Association loi 1901",
-    adresse: "23 place Jules Ferry, 30290 Laudun",
+    adresse: `${locationData.address.street}, ${locationData.address.postalCode} ${locationData.address.city}`,
     telephone: "[Téléphone de la MSP]",
     email: "[Email de contact institutionnel]",
     siret: "[SIRET à 14 chiffres]",
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/og-image-v3.jpg",
                 width: 1200,
                 height: 630,
                 alt: "MSP L'Oppidum à Laudun",
@@ -53,32 +56,29 @@ export const metadata: Metadata = {
         title: "Mentions légales à Laudun - MSP L'Oppidum",
         description:
             "Mentions légales de la MSP L'Oppidum à Laudun (30290). Consultez les détails.",
-        images: ["/og-image.jpg"],
+        images: ["/og-image-v3.jpg"],
     },
     robots: { index: true, follow: true },
 };
 
 export default function MentionsLegalesPage() {
-    const breadcrumbSchema = getBreadcrumbListSchema([
+    const breadcrumbItems = [
         { name: "Accueil", url: `${SITE_URL}/` },
         { name: "Mentions légales", url: `${SITE_URL}/mentions-legales` },
-    ]);
+    ];
 
     return (
-        <main
-            className="min-h-screen bg-background"
-            role="main"
-            aria-label="Contenu principal – Mentions légales"
-        >
-            <script
+        <main className="min-h-screen bg-background">
+            <JsonLdScript
                 id="ld-breadcrumb-mentions-legales"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
+                data={getBreadcrumbListSchema(breadcrumbItems)}
             />
             <article className="container mx-auto max-w-5xl px-4 py-12 md:py-16">
                 <header className="mb-14">
+                    <Breadcrumb
+                        items={breadcrumbItems}
+                        className="mb-6 flex justify-start [&>ol]:justify-start"
+                    />
                     <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-[2.5rem]">
                         Mentions légales
                     </h1>
@@ -86,9 +86,9 @@ export default function MentionsLegalesPage() {
                         Conformément aux dispositions des articles 6-III et 19 de la loi
                         n° 2004-575 du 21 juin 2004 pour la confiance dans l&apos;économie
                         numérique (LCEN), les présentes mentions légales régissent
-                        l&apos;accès et l&apos;utilisation du site internet dont la MSP
-                        L&apos;Opidum (Maison de Santé Pluriprofessionnelle) est
-                        l&apos;unique propriétaire et l&apos;éditeur responsable.
+                        l&apos;accès et l&apos;utilisation du site internet dont la{" "}
+                        {EDITEUR.denominationComplete} est l&apos;unique propriétaire et
+                        l&apos;éditeur responsable.
                     </p>
                 </header>
 

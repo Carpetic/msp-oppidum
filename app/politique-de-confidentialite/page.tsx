@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL, SITE_NAME, SITE_LEGAL_NAME } from "@/lib/site";
 import { getBreadcrumbListSchema } from "@/lib/structured-data";
+import { JsonLdScript } from "@/components/JsonLd";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { locationData } from "@/app/data/location";
 
 /**
  * Données du responsable du traitement – à aligner avec les mentions légales.
  */
 const RESPONSABLE = {
-    nom: "MSP L'Opidum",
-    denominationComplete: "MSP L'Opidum (Maison de Santé Pluriprofessionnelle)",
-    adresse: "23 place Jules Ferry, 30290 Laudun",
+    nom: SITE_NAME,
+    denominationComplete: SITE_LEGAL_NAME,
+    adresse: `${locationData.address.street}, ${locationData.address.postalCode} ${locationData.address.city}`,
     email: "[Email de contact institutionnel]",
 } as const;
 
@@ -28,7 +31,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/og-image-v3.jpg",
                 width: 1200,
                 height: 630,
                 alt: "MSP L'Oppidum à Laudun",
@@ -40,32 +43,29 @@ export const metadata: Metadata = {
         title: "Confidentialité à Laudun - MSP L'Oppidum",
         description:
             "Politique de confidentialité et protection des données de la MSP L'Oppidum à Laudun (30290).",
-        images: ["/og-image.jpg"],
+        images: ["/og-image-v3.jpg"],
     },
     robots: { index: true, follow: true },
 };
 
 export default function PolitiqueConfidentialitePage() {
-    const breadcrumbSchema = getBreadcrumbListSchema([
+    const breadcrumbItems = [
         { name: "Accueil", url: `${SITE_URL}/` },
         { name: "Politique de confidentialité", url: `${SITE_URL}/politique-de-confidentialite` },
-    ]);
+    ];
 
     return (
-        <main
-            className="min-h-screen bg-background"
-            role="main"
-            aria-label="Contenu principal – Politique de confidentialité"
-        >
-            <script
+        <main className="min-h-screen bg-background">
+            <JsonLdScript
                 id="ld-breadcrumb-politique-confidentialite"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
+                data={getBreadcrumbListSchema(breadcrumbItems)}
             />
             <article className="container mx-auto max-w-5xl px-4 py-12 md:py-16">
                 <header className="mb-14">
+                    <Breadcrumb
+                        items={breadcrumbItems}
+                        className="mb-6 [&>ol]:justify-start"
+                    />
                     <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl lg:text-[2.5rem]">
                         Politique de confidentialité
                     </h1>
@@ -76,8 +76,8 @@ export default function PolitiqueConfidentialitePage() {
                         et de la loi « Informatique et Libertés » du 6 janvier 1978 modifiée,
                         traite les données à caractère personnel dans le cadre de
                         l&apos;utilisation de son site internet. Elle s&apos;applique au site
-                        vitrine dont la MSP L&apos;Opidum est l&apos;unique propriétaire et
-                        l&apos;éditeur.
+                        vitrine dont la {RESPONSABLE.nom} est l&apos;unique propriétaire
+                        et l&apos;éditeur.
                     </p>
                 </header>
 

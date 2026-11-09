@@ -1,61 +1,80 @@
 import type { Metadata } from "next";
 
-import { getBreadcrumbListSchema } from "@/lib/structured-data";
+import {
+    getBreadcrumbListSchema,
+    getPractitionerListGraph,
+} from "@/lib/structured-data";
+import { flattenCabinetGroups, getCabinetsByCommune } from "@/lib/metiers";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { JsonLdScript } from "@/components/JsonLd";
 import { SpecialistesClient } from "./SpecialistesClient";
 import { PageHeader } from "@/components/PageHeader";
+import { SPECIALISTES } from "@/app/data/specialistes";
+
+const PAGE_URL = `${SITE_URL}/specialistes`;
+// Le suffixe de marque est ajouté par le `title.template` du layout : le
+// répéter ici produisait « … - MSP L'Oppidum - MSP L'Oppidum ».
+const PAGE_TITLE = "Professionnels de santé à Laudun-l'Ardoise";
+const PAGE_DESCRIPTION =
+    "Les professionnels de santé de la MSP L'Oppidum à Laudun-l'Ardoise, Orsan, Codolet et Chusclan : adresse et téléphone de chaque cabinet.";
 
 export const metadata: Metadata = {
-    title: "Professionnels de santé à Laudun - MSP L'Oppidum",
-    description:
-        "Professionnels de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie, infirmières et sage-femme. Prenez rendez-vous.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
     openGraph: {
-        url: `${SITE_URL}/specialistes`,
-        title: "Professionnels de santé à Laudun - MSP L'Oppidum",
-        description:
-            "Professionnels de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie, infirmières et sage-femme. Prenez rendez-vous.",
+        url: PAGE_URL,
+        title: `${PAGE_TITLE} - ${SITE_NAME}`,
+        description: PAGE_DESCRIPTION,
         siteName: SITE_NAME,
         locale: "fr_FR",
         type: "website",
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/og-image-v3.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Professionnels de santé MSP L'Oppidum à Laudun",
+                alt: `Professionnels de santé de la ${SITE_NAME}`,
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Professionnels de santé à Laudun - MSP L'Oppidum",
-        description:
-            "Professionnels de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie, infirmières et sage-femmes. Prenez rendez-vous.",
-        images: ["/og-image.jpg"],
+        title: `${PAGE_TITLE} - ${SITE_NAME}`,
+        description: PAGE_DESCRIPTION,
+        images: ["/og-image-v3.jpg"],
     },
-    alternates: { canonical: `${SITE_URL}/specialistes` },
+    alternates: { canonical: PAGE_URL },
     robots: { index: true, follow: true },
 };
 
 export default function SpecialistesPage() {
-    const breadcrumbSchema = getBreadcrumbListSchema([
+    const breadcrumbItems = [
         { name: "Accueil", url: `${SITE_URL}/` },
-        { name: "Professionnels de santé", url: `${SITE_URL}/specialistes` },
-    ]);
+        { name: "Professionnels de santé", url: PAGE_URL },
+    ];
+
+    const communeGroups = getCabinetsByCommune();
 
     return (
         <main className="min-h-screen bg-background">
-            <script
+            <JsonLdScript
                 id="ld-breadcrumb-specialistes"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
+                data={getBreadcrumbListSchema(breadcrumbItems)}
+            />
+            <JsonLdScript
+                id="ld-specialistes"
+                data={getPractitionerListGraph({
+                    pageUrl: PAGE_URL,
+                    name: PAGE_TITLE,
+                    description: PAGE_DESCRIPTION,
+                    groups: flattenCabinetGroups(communeGroups),
+                })}
             />
 
             <PageHeader
-                title="Nos Professionnels de Santé"
-                subtitle="L'équipe pluriprofessionnelle de la MSP de l'Oppidum vous accompagne au quotidien. Découvrez les professionnels qui composent notre maison de santé."
+                breadcrumb={breadcrumbItems}
+                title="Nos professionnels de santé"
+                subtitle={`${SPECIALISTES.length} professionnels répartis sur ${communeGroups.length} communes. L'équipe pluriprofessionnelle de la MSP de l'Oppidum vous accompagne au quotidien.`}
             />
 
             <SpecialistesClient />

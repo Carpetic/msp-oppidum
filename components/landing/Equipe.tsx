@@ -1,15 +1,14 @@
+import Link from "next/link";
+
 import { Section } from "../ui/Section";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { METIERS, SPECIALISTES } from "@/app/data/specialistes";
+import { METIERS_REGISTRY, countSpecialistes } from "@/lib/metiers";
 
 export function LandingEquipe() {
-    const effectifsParMetier = METIERS.filter((metier) => metier !== "Tous")
-        .map((metier) => ({
-            metier,
-            total: SPECIALISTES.filter((specialiste) => specialiste.metier === metier).length,
-        }))
-        .filter(({ total }) => total > 0);
+    const effectifs = METIERS_REGISTRY.map((metier) => ({
+        metier,
+        total: countSpecialistes(metier),
+    })).filter(({ total }) => total > 0);
 
     return (
         <Section id="equipe">
@@ -26,18 +25,22 @@ export function LandingEquipe() {
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed">
-                    Que vous soyez résidant à <strong>Laudun L&apos;ardoise</strong> (30290), Orsan, Codolet ou Chusclan, vous pouvez trouver un accompagnement adapté à votre situation.
+                    Que vous résidiez à <strong>Laudun-l&apos;Ardoise</strong> (30290), Orsan,
+                    Codolet ou Chusclan, vous pouvez trouver un accompagnement adapté à votre
+                    situation.
                 </p>
 
                 <div className="rounded-lg border border-border p-4 md:p-6 bg-white shadow-sm">
                     <h3 className="text-lg font-semibold text-foreground">Effectif par métier dans la MSP</h3>
                     <ul className="mt-4 space-y-2">
-                        {effectifsParMetier.map(({ metier, total }) => (
+                        {effectifs.map(({ metier, total }) => (
                             <li
-                                key={metier}
+                                key={metier.slug}
                                 className="flex items-center justify-between gap-4 border-b border-border/60 pb-2 last:border-0 last:pb-0"
                             >
-                                <span className="text-foreground">{metier}</span>
+                                <span className="text-foreground first-letter:uppercase">
+                                    {metier.pluriel}
+                                </span>
                                 <span className="text-sm text-muted-foreground">
                                     {total} {total > 1 ? "personnes" : "personne"}
                                 </span>
@@ -57,4 +60,3 @@ export function LandingEquipe() {
         </Section>
     );
 }
-

@@ -2,6 +2,8 @@ export interface Cabinet {
     id: string;           // "cabinet-a", "cabinet-b"...
     nom: string;          // "Cabinet Médical", "Cabinet Paramédical"
     adresse: string;
+    /** Commune, reprise mot pour mot de `COMMUNES` (app/data/location.ts). */
+    commune: string;
     telephone?: string;
 }
 
@@ -33,118 +35,144 @@ export const METIERS = [
     "Coordinateur(trice)",
 ] as const;
 
+/**
+ * Adresses normalisées : une seule orthographe par commune (« Laudun-l'Ardoise »
+ * et non « Laudun », « Laudun l'Ardoise » ou « Laudun L’Ardoise »), une seule
+ * apostrophe, types de voie en minuscules. La cohérence de l'adresse entre le
+ * site, les données structurées et la fiche Google conditionne le référencement
+ * local.
+ */
 export const CABINETS: Cabinet[] = [
     {
         id: "cabinet-1",
-        nom: "Cabinet médical de Laudun L'ardoise",
-        adresse: "23 place Jules Ferry, 30290 Laudun l'Ardoise",
+        nom: "Cabinet médical de Laudun-l'Ardoise",
+        adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "04 66 90 79 54",
     },
     {
         id: "cabinet-2",
         nom: "Cabinet médical de Codolet",
         adresse: "1 rue Paul Cezanne, 30200 Codolet",
+        commune: "Codolet",
         telephone: "09 62 60 80 45",
     },
     {
         id: "cabinet-3",
-        nom: "Sage-femme de Laudun L’Ardoise",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        nom: "Sage-femme de Laudun-l'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "07 61 58 34 97",
     },
     {
         id: "cabinet-4",
-        nom: "Cabinet infirmier Laudun L’Ardoise",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        nom: "Cabinet infirmier Laudun-l'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "06 10 79 61 99",
     },
     {
         id: "cabinet-5",
-        nom: "Cabinet infirmier Laudun L’Ardoise",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        nom: "Cabinet infirmier Laudun-l'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "06 42 55 66 38",
     },
     {
         id: "cabinet-6",
-        nom: "Cabinet infirmier Laudun L’Ardoise",
-        adresse: "7 place 4 Septembre 1848, 30290 Laudun l'Ardoise",
+        nom: "Cabinet infirmier Laudun-l'Ardoise",
+        adresse: "7 place du 4 Septembre 1848, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "06 70 83 63 72",
     },
     {
         id: "cabinet-7",
-        nom: "Cabinet infirmier Laudun L’Ardoise",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        nom: "Cabinet infirmier Laudun-l'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "06 76 48 12 65",
     },
     {
         id: "cabinet-8",
-        nom: "Cabinet infirmier Laudun L’Ardoise",
-        adresse: "1941 route Laudun, 30290 Laudun l'Ardoise",
+        nom: "Cabinet infirmier Laudun-l'Ardoise",
+        adresse: "1941 route de Laudun, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
     },
     {
         id: "cabinet-9",
         nom: "Cabinet infirmier Orsan",
-        adresse: "1 b Place des Écoles, 30200 Orsan",
+        adresse: "1b place des Écoles, 30200 Orsan",
+        commune: "Orsan",
         telephone: "06 03 29 13 14",
     },
     {
         id: "cabinet-10",
         nom: "Cabinet infirmier Orsan",
-        adresse: "1 b Place des Écoles, 30200 Orsan",
+        adresse: "1b place des Écoles, 30200 Orsan",
+        commune: "Orsan",
         telephone: "06 40 12 35 75",
     },
     {
         id: "cabinet-11",
         nom: "Cabinet infirmier Chusclan",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
+        commune: "Chusclan",
         telephone: "06 70 98 06 47",
     },
     {
         id: "cabinet-12",
-        nom: "Cabinet de kinésithérapie de Laudun L’Ardoise",
+        nom: "Cabinet de kinésithérapie de Laudun-l'Ardoise",
         adresse: "200 rue Émile Zola, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "04 66 33 00 41",
     },
     {
         id: "cabinet-13",
         nom: "Cabinet de kinésithérapie de Chusclan",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
+        commune: "Chusclan",
         telephone: "04 66 50 26 85",
     },
     {
         id: "cabinet-14",
         nom: "Orthophoniste",
-        adresse: "890 Chemin de Rossignac, 30290 Laudun-l'Ardoise",
+        adresse: "890 chemin de Rossignac, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "07 81 90 28 55",
     },
     {
         id: "cabinet-15",
         nom: "Orthophoniste",
-        adresse: "181 Chemin du Boulas, 30290 Laudun-l'Ardoise",
+        adresse: "181 chemin du Boulas, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "04 66 90 26 35",
     },
     {
         id: "cabinet-16",
         nom: "Pédicure podologue",
-        adresse: "99 rue République, 30290 Laudun l'Ardoise",
+        adresse: "99 rue République, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "06 01 43 54 79",
     },
     {
         id: "cabinet-17",
         nom: "Pharmacie de Laudun",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "04 66 79 44 13",
     },
     {
         id: "cabinet-18",
         nom: "Pharmacie de l'Ardoise",
-        adresse: "70 route Avignon, 30290 Laudun l'Ardoise",
+        adresse: "70 route d'Avignon, 30290 Laudun-l'Ardoise",
+        commune: "Laudun-l'Ardoise",
         telephone: "04 66 50 23 11",
     },
     {
         id: "cabinet-19",
         nom: "Coordinatrice",
-        adresse: "20 rue du pont, 30200 Codolet",
+        adresse: "20 rue du Pont, 30200 Codolet",
+        commune: "Codolet",
         telephone: "07 66 48 33 13",
     },
 ];
@@ -156,8 +184,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Muller",
         prenom: "Cathy",
         metier: "Medecin",
-        telephone: "",
-        adresse: "23 place Jules Ferry, 30290 Laudun l'Ardoise",
+        adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
     },
     {
         id: "2",
@@ -165,8 +192,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Bilate",
         prenom: "Luc",
         metier: "Medecin",
-        telephone: "",
-        adresse: "23 place Jules Ferry, 30290 Laudun l'Ardoise",
+        adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
     },
     {
         id: "3",
@@ -174,7 +200,6 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Jardy-Triola",
         prenom: "Céline",
         metier: "Medecin",
-        telephone: "",
         adresse: "1 rue Paul Cezanne, 30200 Codolet",
     },
     {
@@ -183,7 +208,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Carteron",
         prenom: "Helene",
         metier: "Pharmacien(ne)",
-        adresse: "70 route Avignon, 30290 Laudun l'Ardoise",
+        adresse: "70 route d'Avignon, 30290 Laudun-l'Ardoise",
     },
     {
         id: "5",
@@ -191,7 +216,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Mei",
         prenom: "Nathalie",
         metier: "Pharmacien(ne)",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "6",
@@ -199,7 +224,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Bourdely",
         prenom: "Raphael",
         metier: "Pharmacien(ne)",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "7",
@@ -207,7 +232,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Bord",
         prenom: "Veronique",
         metier: "Infirmier(ère) libérale",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
     },
     {
         id: "8",
@@ -215,7 +240,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Blanchard",
         prenom: "Carine",
         metier: "Infirmier(ère) libérale",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
     },
     {
         id: "9",
@@ -223,7 +248,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Bordes",
         prenom: "Marion",
         metier: "Infirmier(ère) libérale",
-        adresse: "1 b Place des Écoles, 30200 Orsan",
+        adresse: "1b place des Écoles, 30200 Orsan",
     },
     {
         id: "10",
@@ -231,7 +256,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Flandin",
         prenom: "Adeline",
         metier: "Infirmier(ère) libérale",
-        adresse: "1 b Place des Écoles, 30200 Orsan",
+        adresse: "1b place des Écoles, 30200 Orsan",
     },
     {
         id: "11",
@@ -239,7 +264,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Fache",
         prenom: "Stéphanie",
         metier: "Infirmier(ère) libérale",
-        adresse: "1 b Place des Écoles, 30200 Orsan",
+        adresse: "1b place des Écoles, 30200 Orsan",
     },
     {
         id: "12",
@@ -248,7 +273,7 @@ export const SPECIALISTES: Specialiste[] = [
         prenom: "Claudine",
         metier: "Infirmier(ère) libérale",
         telephone: "06 09 20 41 27",
-        adresse: "1941 route Laudun, 30290 Laudun l'Ardoise",
+        adresse: "1941 route de Laudun, 30290 Laudun-l'Ardoise",
     },
     {
         id: "13",
@@ -257,7 +282,7 @@ export const SPECIALISTES: Specialiste[] = [
         prenom: "Anabela",
         metier: "Infirmier(ère) libérale",
         telephone: "06 50 57 17 00",
-        adresse: "1941 route Laudun, 30290 Laudun l'Ardoise",
+        adresse: "1941 route de Laudun, 30290 Laudun-l'Ardoise",
     },
     {
         id: "14",
@@ -265,7 +290,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Bréelle",
         prenom: "Blandine",
         metier: "Infirmier(ère) libérale",
-        adresse: "7 place 4 Septembre 1848, 30290 Laudun l'Ardoise",
+        adresse: "7 place du 4 Septembre 1848, 30290 Laudun-l'Ardoise",
     },
     {
         id: "15",
@@ -273,7 +298,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Borellly",
         prenom: "Alexia",
         metier: "Infirmier(ère) libérale",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "16",
@@ -281,7 +306,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Biallet",
         prenom: "Coralie",
         metier: "Infirmier(ère) libérale",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "17",
@@ -289,7 +314,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Borel",
         prenom: "Sandrine",
         metier: "Infirmier(ère) libérale",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "18",
@@ -297,7 +322,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Courrèges",
         prenom: "Maud",
         metier: "Infirmier(ère) libérale",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "19",
@@ -305,7 +330,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Fernandez",
         prenom: "Antonio",
         metier: "Infirmier(ère) libérale",
-        adresse: "7 place 4 Septembre 1848, 30290 Laudun l'Ardoise",
+        adresse: "7 place du 4 Septembre 1848, 30290 Laudun-l'Ardoise",
     },
     {
         id: "20",
@@ -313,7 +338,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Marchand",
         prenom: "Marie-Hélène",
         metier: "Infirmier(ère) libérale",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "21",
@@ -321,7 +346,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Padilla",
         prenom: "Nathalie",
         metier: "Infirmier(ère) libérale",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "22",
@@ -329,7 +354,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Leon",
         prenom: "Ionut",
         metier: "Kinésithérapeute",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
     },
     {
         id: "23",
@@ -337,7 +362,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Leon",
         prenom: "Monica",
         metier: "Kinésithérapeute",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
     },
     {
         id: "24",
@@ -345,7 +370,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Balan",
         prenom: "Lucian",
         metier: "Kinésithérapeute",
-        adresse: "580 Chemin des Rogations, 30200 Chusclan",
+        adresse: "580 chemin des Rogations, 30200 Chusclan",
     },
     {
         id: "25",
@@ -377,7 +402,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Robert",
         prenom: "Rudy",
         metier: "Pedicure podologue",
-        adresse: "99 rue République, 30290 Laudun l'Ardoise",
+        adresse: "99 rue République, 30290 Laudun-l'Ardoise",
     },
     {
         id: "29",
@@ -385,7 +410,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Boumaza",
         prenom: "Chrystel",
         metier: "Orthophoniste",
-        adresse: "890 Chemin de Rossignac, 30290 Laudun-l'Ardoise",
+        adresse: "890 chemin de Rossignac, 30290 Laudun-l'Ardoise",
     },
     {
         id: "30",
@@ -393,15 +418,15 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Pelletier",
         prenom: "Michele",
         metier: "Coordinateur(trice)",
-        adresse: "20 rue du pont, 30200 Codolet",
+        adresse: "20 rue du Pont, 30200 Codolet",
     },
     {
         id: "31",
         cabinetId: "cabinet-15",
-        nom: "CHARVET",
+        nom: "Charvet",
         prenom: "Nadege",
         metier: "Orthophoniste",
-        adresse: "181 Chemin du Boulas, 30290 Laudun-l'Ardoise",
+        adresse: "181 chemin du Boulas, 30290 Laudun-l'Ardoise",
     },
     {
         id: "32",
@@ -409,7 +434,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Laforest",
         prenom: "Malaury",
         metier: "Sage-femme",
-        adresse: "132 rue Victor Hugo, 30290 Laudun L'Ardoise",
+        adresse: "132 rue Victor Hugo, 30290 Laudun-l'Ardoise",
     },
     {
         id: "33",
@@ -417,8 +442,7 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Rouvière",
         prenom: "Sandie",
         metier: "Secrétaire médical(e)",
-        telephone: "",
-        adresse: "23 place Jules Ferry, 30290 Laudun l'Ardoise",
+        adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
     },
     {
         id: "34",
@@ -426,7 +450,6 @@ export const SPECIALISTES: Specialiste[] = [
         nom: "Rapitéau",
         prenom: "Barbara",
         metier: "Assistant(e) médical(e)",
-        telephone: "",
-        adresse: "23 place Jules Ferry, 30290 Laudun l'Ardoise",
+        adresse: "23 place Jules Ferry, 30290 Laudun-l'Ardoise",
     },
 ];

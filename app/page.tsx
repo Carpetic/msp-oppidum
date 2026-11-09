@@ -1,49 +1,50 @@
+import type { Metadata } from "next";
+
 import { LandingHero } from "@/components/landing/Hero";
 import { LandingInformation } from "@/components/landing/Information";
-import type { Metadata } from "next";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
 import { LandingLocalization } from "@/components/landing/Localization";
-import dynamic from "next/dynamic";
 import { LandingEquipe } from "@/components/landing/Equipe";
 import { LandingEvenements } from "@/components/landing/Evenements";
+import { LandingFAQ } from "@/components/landing/LandingFAQ";
+import { JsonLdScript } from "@/components/JsonLd";
 import { getBreadcrumbListSchema } from "@/lib/structured-data";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
+
+// Le `title.template` du layout racine ne s'applique qu'aux segments enfants,
+// jamais à la page du même segment : le titre de l'accueil doit donc porter la
+// marque lui-même.
+const PAGE_TITLE = `Maison de santé à Laudun-l'Ardoise - ${SITE_NAME}`;
+const PAGE_DESCRIPTION =
+    "Maison de santé pluriprofessionnelle à Laudun-l'Ardoise (30290) : médecine générale, soins infirmiers, kinésithérapie, orthophonie et sage-femme.";
 
 export const metadata: Metadata = {
-    title: "Maison de santé à Laudun",
-    description:
-        "Maison de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun.",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
     openGraph: {
         url: SITE_URL,
-        title: "Maison de santé à Laudun - MSP L'Oppidum",
-        description:
-            "Maison de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun.",
+        title: PAGE_TITLE,
+        description: PAGE_DESCRIPTION,
         siteName: SITE_NAME,
         locale: "fr_FR",
         type: "website",
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/og-image-v3.jpg",
                 width: 1200,
                 height: 630,
-                alt: "MSP L'Oppidum à Laudun",
+                alt: "MSP L'Oppidum à Laudun-l'Ardoise",
             },
         ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Maison de santé à Laudun - MSP L'Oppidum",
-        description:
-            "Maison de santé à Laudun (30290). Médecine générale, kinésithérapie, orthophonie et soins infirmiers. Prenez rendez-vous à Laudun.",
-        images: ["/og-image.jpg"],
+        title: PAGE_TITLE,
+        description: PAGE_DESCRIPTION,
+        images: ["/og-image-v3.jpg"],
     },
     alternates: { canonical: `${SITE_URL}/` },
     robots: { index: true, follow: true },
 };
-
-const LandingFAQ = dynamic(
-    () => import("@/components/landing/LandingFAQ").then((m) => m.LandingFAQ),
-    { loading: () => null }
-);
 
 export default function Home() {
     const breadcrumbSchema = getBreadcrumbListSchema([
@@ -52,18 +53,9 @@ export default function Home() {
     ]);
 
     return (
-        <main
-            className="min-h-screen bg-linear-to-b from-background to-muted"
-            role="main"
-            aria-label="Page d'accueil MSP L'Oppidum"
-        >
-            <script
-                id="ld-breadcrumb-home"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(breadcrumbSchema),
-                }}
-            />
+        <main className="min-h-screen bg-linear-to-b from-background to-muted">
+            <JsonLdScript id="ld-breadcrumb-home" data={breadcrumbSchema} />
+
             <LandingHero />
             <LandingInformation />
             <LandingEquipe />

@@ -15,11 +15,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/PageHeader";
 import { LandingFAQ } from "@/components/landing/LandingFAQ";
+import { AutresEvenements } from "@/components/AutresEvenements";
+import { JsonLdScript } from "@/components/JsonLd";
 import { getEvenement, getEvenementMetadata, getEvenementUrl } from "@/app/data/evenements";
 import {
-    getArticleSchema,
     getBreadcrumbListSchema,
     getEventSchema,
+    getMedicalWebPageGraph,
 } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 
@@ -103,18 +105,19 @@ const faqItems = [
 ];
 
 export default function MarsBleu2026Page() {
-    const breadcrumbSchema = getBreadcrumbListSchema([
+    const breadcrumbItems = [
         { name: "Accueil", url: `${SITE_URL}/` },
         { name: "Événements", url: `${SITE_URL}/evenements` },
         { name: evenement.title, url: EVENT_URL },
-    ]);
+    ];
 
-    const articleSchema = getArticleSchema({
+    const medicalPageGraph = getMedicalWebPageGraph({
         title: evenement.seoTitle,
-        description: evenement.description,
+        description: evenement.seoDescription,
         url: EVENT_URL,
         imageUrl: COVER_URL,
         datePublished: evenement.publishedAt,
+        dateModified: evenement.updatedAt,
     });
 
     // Deux nœuds Event distincts : l'opération en pharmacie et la conférence
@@ -141,7 +144,7 @@ export default function MarsBleu2026Page() {
                 "Conférence grand public consacrée à la prévention et au dépistage du cancer colorectal, animée par le Dr Even Philippe, gastro-entérologue.",
             url: EVENT_URL,
             imageUrl: COVER_URL,
-            startDate: "2026-04-13T18:30",
+            startDate: "2026-04-13T18:30:00+02:00",
             place: {
                 name: "Salle Jacques Brel",
                 streetAddress: "1565 route de Laudun",
@@ -154,24 +157,16 @@ export default function MarsBleu2026Page() {
 
 
     return (
-        <main className="min-h-screen bg-linear-to-b from-background to-muted" role="main">
-            <script
+        <main className="min-h-screen bg-linear-to-b from-background to-muted">
+            <JsonLdScript
                 id="ld-breadcrumb-mars-bleu"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+                data={getBreadcrumbListSchema(breadcrumbItems)}
             />
-            <script
-                id="ld-article-mars-bleu"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-            />
-            <script
-                id="ld-event-mars-bleu"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchemas) }}
-            />
+            <JsonLdScript id="ld-page-mars-bleu" data={medicalPageGraph} />
+            <JsonLdScript id="ld-event-mars-bleu" data={eventSchemas} />
 
             <PageHeader
+                breadcrumb={breadcrumbItems}
                 kicker={evenement.kicker}
                 title={evenement.title}
                 subtitle={evenement.tagline}
@@ -325,7 +320,7 @@ export default function MarsBleu2026Page() {
                     <div className="flex flex-wrap gap-x-6 gap-y-2 rounded-lg border border-blue-200 bg-blue-50/60 p-5 text-sm">
                         <span className="inline-flex items-center gap-2 text-blue-900">
                             <CalendarDays className="h-4 w-4 shrink-0" aria-hidden />
-                            <time dateTime="2026-04-13T18:30">Lundi 13 avril 2026</time>
+                            <time dateTime="2026-04-13T18:30:00+02:00">Lundi 13 avril 2026</time>
                         </span>
                         <span className="inline-flex items-center gap-2 text-blue-900">
                             <Clock className="h-4 w-4 shrink-0" aria-hidden />
@@ -437,6 +432,8 @@ export default function MarsBleu2026Page() {
                 sectionId="faq-mars-bleu"
                 schemaId="ld-faq-mars-bleu"
             />
+
+            <AutresEvenements slug={evenement.slug} />
         </main>
     );
 }

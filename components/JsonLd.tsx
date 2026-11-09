@@ -1,20 +1,26 @@
-import { getMedicalClinicSchema, getOrganizationSchema } from "@/lib/structured-data";
+import { getSiteGraph } from "@/lib/structured-data";
 
-export function JsonLd() {
-    const medicalClinic = getMedicalClinicSchema();
-    const organization = getOrganizationSchema();
+/**
+ * Insère un bloc JSON-LD.
+ *
+ * Centralisé pour que toutes les pages sérialisent de la même façon, plutôt que
+ * de répéter la même balise `<script>` avec `dangerouslySetInnerHTML`.
+ */
+export function JsonLdScript({ id, data }: { id: string; data: unknown }) {
     return (
-        <>
-            <script
-                id="ld-medicalclinic"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalClinic) }}
-            />
-            <script
-                id="ld-organization"
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
-            />
-        </>
+        <script
+            id={id}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        />
     );
+}
+
+/**
+ * Graphe commun à toutes les pages : le nœud unique de la structure.
+ *
+ * Un seul nœud d'organisation, référencé partout ailleurs par son `@id`.
+ */
+export function JsonLd() {
+    return <JsonLdScript id="ld-site" data={getSiteGraph()} />;
 }

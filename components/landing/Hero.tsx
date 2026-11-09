@@ -27,9 +27,9 @@ export function LandingHero() {
             <div className="absolute inset-0">
                 <Image
                     src="/background/oppidum.webp"
-                    alt="Photo de l'Oppidum à Laudun"
-                    width={1600}
-                    height={900}
+                    alt="L'oppidum de Laudun-l'Ardoise, site archéologique qui donne son nom à la maison de santé"
+                    width={1360}
+                    height={1020}
                     priority
                     className="h-full w-full object-cover"
                     sizes="100vw"
@@ -44,16 +44,17 @@ export function LandingHero() {
             <div className="container relative z-10 mx-auto px-4 py-20 md:py-28">
                 <div className="max-w-3xl mx-auto text-center">
                     <p className="text-white text-sm font-medium tracking-wide uppercase mb-4 drop-shadow-sm">
-                        Maison de Santé Pluriprofessionnelle
+                        Soins coordonnés &middot; 4 communes
                     </p>
                     <h1
                         id="hero-title"
                         className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight mb-4 drop-shadow-md"
                     >
-                        Maison de Santé Pluriprofessionnelle Multisite L&apos;Oppidum
+                        Maison de santé pluriprofessionnelle L&apos;Oppidum à
+                        Laudun-l&apos;Ardoise
                     </h1>
                     <p className="text-white/95 text-lg md:text-xl mb-10 max-w-xl mx-auto drop-shadow-sm">
-                        Soins coordonnés et prise en charge globale à Laudun L&apos;ardoise, Orsan, Codolet et Chusclan. Médecine générale et équipe pluriprofessionnelle à votre service.
+                        Une équipe pluriprofessionnelle multisite au service de Laudun-l&apos;Ardoise, Orsan, Codolet et Chusclan : médecine générale, soins infirmiers, kinésithérapie, orthophonie, sage-femme et pédicurie-podologie.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">

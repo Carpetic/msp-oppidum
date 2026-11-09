@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { SITE_URL, SITE_NAME, SITE_DEFAULT_TITLE, SITE_DEFAULT_DESCRIPTION } from "@/lib/site";
+import {
+    SITE_URL,
+    SITE_NAME,
+    SITE_DEFAULT_TITLE,
+    SITE_DEFAULT_DESCRIPTION,
+    SITE_THEME_COLOR,
+} from "@/lib/site";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -13,12 +19,9 @@ const geistSans = Geist({
     display: "swap",
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-    preload: true,
-    display: "swap",
-});
+export const viewport: Viewport = {
+    themeColor: SITE_THEME_COLOR,
+};
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -31,6 +34,14 @@ export const metadata: Metadata = {
     creator: SITE_NAME,
     publisher: SITE_NAME,
     formatDetection: { email: false, address: false, telephone: false },
+    manifest: "/site.webmanifest",
+    icons: {
+        icon: [
+            { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+            { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        ],
+        apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    },
     openGraph: {
         type: "website",
         locale: "fr_FR",
@@ -40,10 +51,10 @@ export const metadata: Metadata = {
         description: SITE_DEFAULT_DESCRIPTION,
         images: [
             {
-                url: "/og-image.jpg",
+                url: "/og-image-v3.jpg",
                 width: 1200,
                 height: 630,
-                alt: `MSP L'Oppidum à Laudun`,
+                alt: `MSP L'Oppidum à Laudun-l'Ardoise`,
             },
         ],
     },
@@ -51,7 +62,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: SITE_DEFAULT_TITLE,
         description: SITE_DEFAULT_DESCRIPTION,
-        images: ["/og-image.jpg"],
+        images: ["/og-image-v3.jpg"],
     },
     robots: {
         index: true,
@@ -70,13 +81,9 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <head>
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-                <link rel="manifest" href="/site.webmanifest" />
                 <JsonLd />
             </head>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            <body className={`${geistSans.variable} antialiased`}>
                 <Header />
                 {children}
                 <Footer />
